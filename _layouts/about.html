@@ -1,9 +1,21 @@
----
-layout: post
-hidden:
-  - header
-  - navigator
-  - related_posts
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-{{ content }}
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include views/header.html -%}
+
+    {%- include extensions/hashlocate.html -%}
+
+    {%- include extensions/theme-toggle.html -%}
+
+    {%- include extensions/click-to-top.html -%}
+
+    {{ content }}
+
+    {%- include views/footer.html -%}
+
+  </body>
+</html>

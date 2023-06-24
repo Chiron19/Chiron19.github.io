@@ -50,7 +50,14 @@ html[data-theme="dark"]  {
   .site-header {
     background-color: #090909;
 
+    .site-favicon {
+      .layer101 {
+        fill: #f8f8f8;
+      }
+    }
+
     .site-brand {
+      color:#f8f8f8;
       .site-brand-inner {
         &, &:visited {
           color: #f8f8f8;
