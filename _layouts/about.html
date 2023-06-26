@@ -3,19 +3,128 @@
 
   {%- include head.html -%}
 
-  <body>
+  {%- include views/header.html -%}
 
-    {%- include views/header.html -%}
+  {%- include extensions/hashlocate.html -%}
 
-    {%- include extensions/hashlocate.html -%}
+{%- assign name = 'night_mode' -%}
+{%- include functions.html func='get_value' default='auto' -%}
+{%- assign night_mode = return -%}
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('{{ night_mode }}' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
 
-    {%- include extensions/theme-toggle.html -%}
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
 
-    {%- include extensions/click-to-top.html -%}
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
 
-    {{ content }}
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
 
-    {%- include views/footer.html -%}
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
 
-  </body>
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+
+  <div id="click-to-top" class="click-to-top" style="z-index: 100;">
+    <i class="fa fa-arrow-up"></i>
+  </div>
+  <script>
+    (function () {
+      const clickToTop = document.getElementById('click-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          clickToTop.classList.add('show')
+        }else {
+          clickToTop.classList.remove('show')
+        }
+      });
+      clickToTop.addEventListener('click', () => {
+        window.smoothScrollTo(0);
+      });
+    })();
+  </script>
+
+  {{ content }}
+
+  {%- include views/footer.html -%}
+
 </html>

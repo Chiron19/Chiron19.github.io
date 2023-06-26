@@ -612,24 +612,25 @@ html {
       margin: 0;
 
       > :nth-child(1) {
-        @include relative-font-size(3.9);
+        @include relative-font-size(1.5);
         letter-spacing: -1px;
         margin-bottom: 0.1em;
         font-weight: normal;
         transition: 0.2s all;
 
         @include media-query($on-palm) {
-          @include relative-font-size(1.975);
+          @include relative-font-size(1.2);
         }
       }
 
       > :nth-child(2) {
+        @include relative-font-size(3.5);
         font-weight: lighter;
         margin-bottom: 0.8em;
         transition: 0.2s all;
 
         @include media-query($on-palm) {
-          @include relative-font-size(1.175);
+          @include relative-font-size(1.9);
         }
       }
 
@@ -679,7 +680,7 @@ html {
   }
 
   @include media-query($on-palm) {
-    height: $banner-height / 1.5;
+    height: calc($banner-height / 1.5);
   }
 }
 

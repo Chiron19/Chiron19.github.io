@@ -154,9 +154,10 @@ yat:
 # Page default value
 defaults:
   home:
-    heading: 'Imagination'
-    subheading: 'is a tool beyond understanding.'
-    banner: "Your image url"
+    heading: 'Desire, Emotion, and Knowledge.'
+    subheading: 'Human behavior flows from three main sources:'
+    banner: "/assets/images/banners/banner-day.jpg"
+    logo: "/assets/images/logo.svg"
 
 # Banner default settings
 # These banner settings are for global banner default, but you can also
