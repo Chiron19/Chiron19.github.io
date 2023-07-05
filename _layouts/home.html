@@ -12,7 +12,6 @@
     }
 
     #page-banner-obj-img:hover {
-        max-width: 33%;
         -webkit-filter: drop-shadow(10px 10px 10px rgba(0,0,0,.7));
         filter: drop-shadow(10px 10px 10px rgba(0,0,0,.7));
     }
@@ -85,8 +84,8 @@
             <div class="page-banner-img">
                 <div style="background-image: url({{ banner_image }})"></div>
                 <img class="img-placeholder" src="{{ banner_image }}">
-                <div class="page-banner-obj" style="left: 0%;bottom: 71%;display: flex;position: relative;align-items: flex-end;align-content: flex-end;align-items: end;flex-direction: row-reverse; ">
-                    <img id="page-banner-obj-img" src="/assets/images/object/plato.png" alt="Plato, Ancient Greek Philosophist" onclick="location='about.html'">
+                <div class="page-banner-obj" style="left: 0%;bottom: 71%;display: flex;position: relative;align-items: flex-end;align-content: flex-end;flex-direction: row-reverse; ">
+                    <img id="page-banner-obj-img" style="max-width: 33%;" src="/assets/images/object/plato-min.png" alt="Plato, Ancient Greek Philosophist" onclick="location='about.html'">
                 </div>
             </div>
             <div class="wrapper">
