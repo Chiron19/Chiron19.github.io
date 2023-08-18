@@ -1,5 +1,7 @@
-*.gem
-.bundle
-.sass-cache
-_site
-Gemfile.lock
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+node_modules/
+.DS_Store
