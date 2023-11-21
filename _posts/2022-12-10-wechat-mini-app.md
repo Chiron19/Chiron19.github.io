@@ -7,7 +7,7 @@ tags: [project]
 permalink: wechat_app
 ---
 
-This page is under construction.
+The motivation for this project is to solidate the basic knowledge and skill we have acquired with a simple-to-implement project, visualizing and organizing the webpage on the WeChat platform.
 
 ## Introduction
 This is a software project based on webpage programming (HTML, JS, CSS). 

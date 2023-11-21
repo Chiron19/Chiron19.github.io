@@ -11,7 +11,7 @@ theme-color: indigo # indigo|yellow|pink|green|stone|
 
 # homepage information
 author: Ziyang Song
-author-bio: PAGE is under construction now.  # change to false to hide
+author-bio: Master's student in Information and Network Engineering (EE/CS), Doing master thesis  # change to false to hide
 author-image: AI_pic.jpg  # file must be in the /assets/img/ folder
 
 # navigation menu

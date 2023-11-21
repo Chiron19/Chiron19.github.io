@@ -861,7 +861,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-indigo-800 {
   --tw-text-opacity: 1;
-  color: rgb(55 48 163 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-blue-700 {
@@ -1333,7 +1333,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .prose-indigo {
-  --tw-prose-links: #4f46e5;
+  --tw-prose-links: #46aaff;
   --tw-prose-invert-links: #6366f1;
 }
 
@@ -1606,6 +1606,7 @@ html[data-theme="dark"] {
     --tw-prose-invert-pre-bg: rgb(255 255 255 / 50%);
     --tw-prose-invert-th-borders: #4b5563;
     --tw-prose-invert-td-borders: #374151;
+    --tw-prose-links: #d1d5db;
   }
   .text-gray-900 {
     color: #f3f4f6;
