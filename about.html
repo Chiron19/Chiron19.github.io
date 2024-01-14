@@ -61,7 +61,6 @@ permalink: about
             -webkit-user-drag: none;
             -moz-user-drag: none;
             -o-user-drag: none;
-            user-drag: none;
             -webkit-touch-callout: none;
         }
 
@@ -12469,7 +12468,7 @@ permalink: about
                         </div>
                     </div>
                 </div>
-                <div id="img_head" style="z-index:6;">
+                <div id="img_head" class="animation-rotate-on-hover" style="z-index:6;">
                     <div id="FXS7n2iFmFTaaDHD" style="padding-top:100%;">
                         <div id="DOQh9bm0Ok43yQk6" style="top:0px;left:0px;width:100%;position:absolute;height:100%;">
                             <div class="animation_container">
@@ -14720,6 +14719,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         .animated {
             height: 100%;
+        }
+
+        
+        .animated img{
+            transition: transform 0s;
+        }
+
+        .animation-rotate-on-hover:hover img{
+            opacity: 0.5;
+            transform: rotate(360deg); 
+            transition: opacity 3s, transform 3s; 
         }
 
         .scroll-trigger {

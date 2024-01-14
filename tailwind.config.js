@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['"Inclusive Sans"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
@@ -40,6 +40,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@fontsource/inclusive-sans'),
   ],
 
 }
