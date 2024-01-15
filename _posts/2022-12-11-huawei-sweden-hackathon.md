@@ -213,11 +213,26 @@ $$
 ## Optimization Problem
 Different from traditional ACM problems, this problem is considered NP-hard, which is impossible to derive the _optimal solution_ within polynomial computing time. A common method is to try getting a _legal solution_ within the constraint and optimize it toward a certain optimization goal, so a _feasible solution_ among a certain range may arise.
 
+### Variable Declearation
 Now, try to mathematical analyze and form the optimization goal as follow:
 
-Find decision 0-1 matrix $$ \mathbf{e}_{U\times N} $$ , where $$ e_{ij} = \{0,1\} $$ . The problem now is representing as a requiry of a 0-1 matrix, where the corresponding element $ e_{ij} $ represents whether the $ i $ -th user exists on $ j $ -th column of channel.
+Find decision 0-1 matrix $$ \mathbf{e}$$, size $$U\times N$$, where $$ e_{ij} = \{0,1\} $$ . The problem now is representing as a requiry of a 0-1 matrix, where the corresponding element $ e_{ij} $ represents whether the $ i $ -th user exists on $ j $ -th column of channel.
+
+Initial speed: a vector $$\mathbf{v_0}$$, size $$1\times U$$, given.
+
+Weight: a vector $$\mathbf{w}$$, size $$1\times U$$, given.
+
+Factor: a vector $$\mathbf{k}$$, size $$1\times U$$, given.
+
+Data size: a vector $$\mathbf{d}$$, size $$1\times U$$, given.
+
+Combined parameter: a vector $$\mathbf{B} = \mathbf{v_0} \odot \mathbf{w} \odot \mathbf{k}$$, size $$1\times U$$, which means $$\beta_i = {v_0}_i \cdot w_i \cdot k_i $$, derived by given. (Note: $\odot$ is denoted as the [Hadamard product (element wise product)](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)))
+
+User speed: a matrix $$\mathbf{v}$$, size $$U\times N$$.
 
 ### Goal Function
+Objective function can be written as:
+
 $$
 \begin{aligned}
     f(\mathbf{e}_{U\times N}) &=\sum_{i=1}^{U} \left( \frac{1}{\sum_{j=1}^{N} e_{ij}}\sum_{j=1}^{N} e_{ij}\cdot v_{ij} \right) \cdot w_i\\ 
@@ -225,6 +240,14 @@ $$
     &= \sum_{i=1}^{U} w_i {v_{0}}_i \frac{(1-k_{i}^2)\sum_{j=1}^{N} e_{ij} - k_i \sum_{j=1}^{N} \sum_{l=1}^{U} e_{ij}e_{lj}k_l}{\sum_{j=1}^{N} e_{ij}}\\
     &= \sum_{i=1}^{U} w_i {v_{0}}_i \left[ (1-k_{i}^2)- \frac{k_i\sum_{j=1}^{N} \sum_{l=1}^{U} e_{ij}e_{lj}k_l}{\sum_{j=1}^{N} e_{ij}} \right]\\
     &= \sum_{i=1}^{U} w_i {v_{0}}_i\cdot (1-k_{i}^2)- g(\mathbf{e}_{U\times N})
+\end{aligned}
+$$
+
+which could be organized in matrix form as:
+
+$$
+\begin{aligned}
+    f(\mathbf{e}_{U\times N}) = \mathbf{B}_{1\times U} \odot \left( \frac{1}{\mathbf{k}_{1\times U}}- \mathbf{k}_{1\times U} \right) \cdot \mathbf{1}^\intercal_{U} - g(\mathbf{e}_{U\times N}),
 \end{aligned}
 $$
 
@@ -237,7 +260,17 @@ $$
 \end{aligned}
 $$
 
-and
+which could be organized in matrix form as:
+
+$$
+\begin{aligned}
+    g(\mathbf{e}_{U\times N}) = \mathbf{B}_{1\times U} \cdot \left[ \mathbf{k}_{1\times U} \cdot \mathbf{e}_{U\times N} \cdot \mathbf{e}^\intercal_{U\times N} \oslash \left(\mathbf{e}_{U\times N} \cdot \mathbf{1}^\intercal_{N} \right) \right],
+\end{aligned}
+$$
+
+(Note: $\oslash$ is denoted as the _Hadamard division_).
+
+And
 
 $$
 \begin{aligned}
@@ -246,9 +279,18 @@ $$
 \end{aligned}
 $$
 
+which could be organized in matrix form as:
+
+$$
+\begin{aligned}
+    \mathbf{v} = \mathbf{v_{0}}^\intercal_{1\times U} \cdot \mathbf{1}_{N} \cdot \left[ 1-\left( \mathbf{k}_{1\times U} \cdot \mathbf{k}^\intercal_{1\times U} - {\mathbf{k}^2_{1\times U}}^\intercal \cdot \mathbf{1}_{N}\right) \odot \mathbf{e}_{U\times N} \right].
+\end{aligned}
+$$
+
 subject to
 
-Data size Limit (main):
+- Data size Limit (main):
+
 $$
     \sum_{j=1}^{N} e_{ij}\cdot D(v_{ij}) \geq d_i,\ \forall i \in \left\{ 1, \ldots , U \right\} 
 $$
@@ -257,9 +299,23 @@ where $$ d^{\prime}_{ij} = D(v_{ij}) $$
 is a mapping function, 
 $$ \mathbb{R} \mapsto \mathbb{D} $$.
 
-User number Limit (strict):
+In matrix representation:
+
+$$
+    \mathbf{1}_{N} \cdot \left( \mathbf{e}_{U\times N} \odot D(\mathbf{v}_{U\times N}) \right)^\intercal - \mathbf{d}_{1\times U} \geq \mathbf{0}_{U}.
+$$
+
+
+- User number Limit (strict):
+
 $$
     \sum_{i=1}^{U} e_{ij} \leq  M,\ \forall j \in \left\{ 1, \ldots , N \right\} 
+$$
+
+In matrix representation:
+
+$$
+    M - \mathbf{1}_{U} \cdot \mathbf{e}_{U\times N} \geq \mathbf{0}_{N}.
 $$
 
 For fesible solutions, find $\arg \max_{\mathbf{e}} f(\mathbf{e}) = \arg \min_{\mathbf{e}} g(\mathbf{e})$.
@@ -270,6 +326,12 @@ Penalty term (related to data loss):
 
 $$
     P(\mathbf{e}_{U\times N}) = -\alpha\cdot \frac{\sum_{i=1}^{U} \left[d_i - \sum_{j=1}^{N} e_{ij}\cdot D(v_{ij})  \right]}{\sum_{i=1}^{U} d_i}
+$$
+
+which could be organized in matrix form as:
+
+$$
+    P(\mathbf{e}_{U\times N}) = \alpha\cdot \frac{\left[ \mathbf{1}_{N} \cdot \left( \mathbf{e}_{U\times N} \odot D(\mathbf{v}_{U\times N}) \right)^\intercal - \mathbf{d}_{1\times U} \right] \cdot \mathbf{1}_{U}^\intercal}{ \mathbf{1}_{U} \cdot \mathbf{d}_{1\times U}^\intercal }
 $$
 
 Goal Function with Penalty term:
@@ -303,7 +365,9 @@ $\tilde{\mathbf{d}} = [$ 0, 290, 575, 813, 1082, 1351, 1620, 1889, 2158, 2427, 2
 
 ## Algorithms
 
-The winning team gave a lot of interesting insights.
+Clear to see, after reforming it as a constraint optimization problem, a lot of methods could be used to find a feasible / local optimal solution.
+
+The winning team gave us a lot of interesting insights.
 
 First of all: most of the feasible solutions for the main objective were obtained by randomized algorithms shuffle-relax, heuristic objectives (example: sorting by factor likelihood).
 
