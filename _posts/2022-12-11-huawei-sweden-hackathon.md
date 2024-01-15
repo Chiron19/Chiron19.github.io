@@ -318,8 +318,27 @@ $$
     M - \mathbf{1}_{U} \cdot \mathbf{e}_{U\times N} \geq \mathbf{0}_{N}.
 $$
 
+### Gradient 
 For fesible solutions, find $\arg \max_{\mathbf{e}} f(\mathbf{e}) = \arg \min_{\mathbf{e}} g(\mathbf{e})$.
 
+In this case consider gradient descent, we calculate the gradient of $g(\mathbf{e})$ w.r.t $\mathbf{e}$ in each step,
+
+$$
+\begin{aligned}
+    \frac{\partial g}{\partial e_{ab}} = \frac{\partial}{\partial e_{ab}}\ \sum_{i=1}^{U} \beta_i  \frac{\sum_{j=1}^{N} \sum_{l=1}^{U} e_{ij}e_{lj}k_l}{\sum_{j=1}^{N} e_{ij}}
+\end{aligned}
+$$
+
+which could be organized in matrix form as:
+
+$$
+\begin{aligned}
+    \frac{\partial g}{\partial \mathbf{e}_{U\times N}} &= \mathbf{k}^\intercal_{1\times U} \cdot \mathbf{1}_{U} \cdot \left[ \mathbf{e}_{U\times N} \oslash \left(\mathbf{e}_{U\times N} \cdot  \mathbf{1}_{N\times N}\right)\right]\\
+    &- \mathbf{k}^\intercal_{1\times U} \cdot \mathbf{1}_{N} \odot \left[ \mathbf{e}_{U\times N} \oslash \left(\mathbf{e}_{U\times N} \cdot  \mathbf{1}_{N\times N}\right) \right].
+\end{aligned}
+$$
+
+### Penalty Term
 If Data size Limit cannot be fulfilled, counted as infesible solutions.
 
 Penalty term (related to data loss):
@@ -357,15 +376,21 @@ $$
 
 ### Mapping Function
 
+The mapping function is a single value mapping:
+
 $$ D(v_{ij}) = \tilde{d}_{\left\lfloor \tilde{v}_{ij} \right\rfloor +1} $$
+
 where 
-$$ \tilde{v}_{ij} = \min(\max(v_{ij},0), |\tilde{\mathbf{d}}|-1) $$ .
+
+$$ \tilde{v}_{ij} = \min(\max(v_{ij},0), |\tilde{\mathbf{d}}|-1).$$
+
+The value of $\tilde{\mathbf{d}}$ is given as follows:
 
 $\tilde{\mathbf{d}} = [$ 0, 290, 575, 813, 1082, 1351, 1620, 1889, 2158, 2427, 2696, 2965, 3234, 3503, 3772, 4041, 4310, 4579, 4848, 5117, 5386, 5655, 5924, 6093, 6360, 6611, 6800 $].$
 
 ## Algorithms
 
-Clear to see, after reforming it as a constraint optimization problem, a lot of methods could be used to find a feasible / local optimal solution.
+Clear to see, after reforming it as a constraint optimization problem, a lot of methods could be used to find a feasible / local optimal solution. The trivial one is to do some Stochastic Gradient Descent (SGD), since each operation takes reasonable computational complexity. However, the goal value is not guaranteed to converge. 
 
 The winning team gave us a lot of interesting insights.
 
