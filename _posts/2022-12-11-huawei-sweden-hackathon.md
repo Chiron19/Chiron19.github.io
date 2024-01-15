@@ -7,11 +7,11 @@ tags: [experience]
 permalink: huawei_hackathon
 ---
 
-![Huawei Sweden Hackathon 2022](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214230636969-349900823.png)
+![Huawei Sweden Hackathon 2022](https://i.imgur.com/3CVUlOe.png)
 
-[See photo album here.](https://www.flickr.com/photos/bemyapp/albums/72177720304413786/)
+[See photo album here. 📸](https://www.flickr.com/photos/bemyapp/albums/72177720304413786/)
 
-[See repository on Github.](https://github.com/Chiron19/HuaweiHackathon2022)
+[See repository on Github. 🖥️](https://github.com/Chiron19/HuaweiHackathon2022)
 
 Stockholm in winter is gorgeous, espacially during the Nobel week: pure white snow peacefully falling from sky, colorful lights on the city hall, easy and transquil mood when the night comes... 
 
@@ -28,15 +28,15 @@ First time taking part in a team contest as an abroad student, I experienced unf
 - As we have limited bandwidth, efficient allocation of data channel resources to the users has a significant impact on the quality of experience of the users.
 - Here, we focus on the simplified version of the downlink data channel allocation problem as a key building block of mobile networks. 
 
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214230816179-1160416913.png)
+![wireless network background settings](https://i.imgur.com/Kcadn2u.png)
 
 ### Problem statement
 #### Modeling
-- 5G massive MIMO resources can be divided into M*N grids where in each grid only a single user can be placed.
+- 5G massive MIMO resources can be divided into $M$*$N$ grids where in each grid only a single user can be placed.
 - We can have multiple instances of each user based on the size of its data. A user with bigger size of data potentially needs more instances (more grids) to send its data. For example, in the following figure, we have 5 instances of user U1, 3 instances of U2 and 2 instances of U3. 
 - We cannot place more than one instance of the same user in the same column, for example, two U1s cannot be placed in the same column. But we can have multiple instances of the same user in the same row.
 
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214232819731-1193898086.png)
+![problem modeling](https://i.imgur.com/oLaTkb1.png)
 
 Parameters:
 * $M$: Number of rows
@@ -51,13 +51,13 @@ Each user is denoted by a tuple including: {initial speed, data size, factor}
 * Factor: the factor by which the data speed of the user reduces as a result of collocating with other users in the same column.
 
 For example, we can have three users as follows:
-- U1={20,5000,0.3}, This means that user U1 wants to send 5000 bytes data and if there is no conflict with other users the data will be sent by speed 20; otherwise the factor 0.3 should be considered and the speed would be affected. 
-U2={15,3500,0.25}, 
-U3={26,4200,0.6}.
+- U1 = {20, 5000, 0.3}, This means that user U1 wants to send 5000 bytes data and if there is no conflict with other users the data will be sent by speed 20; otherwise the factor 0.3 should be considered and the speed would be affected. 
+- U2 = {15, 3500, 0.25}, 
+- U3 = {26, 4200, 0.6}.
 
 The number of instances of each user depends on both the size of its data and the speed. When a user’s data cannot be sent entirely in a single grid, it needs multiple grids.
 
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214233449490-1620115891.png)
+![explaination on examples](https://i.imgur.com/T4tKIE9.png)
 
 Users placed in the same column negatively affect each other in terms of data speed, while users on the same row have no effect on each other.
 
@@ -78,12 +78,12 @@ which Users $j$ are assianed to the same column.
 * Note 1: The speed cannot be zero. Thus, if $\text{Speed}_i$ leads to a negative value (i.e., the collocated factor gets bigger than 1), consider the speed equal to zero.  
 For a single column and three users, we can have four different scenarios where the users speeds are calculated as follows:
 
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214233546740-768582996.png)
+![explaination on examples](https://i.imgur.com/SvsCEla.png)
 
 ### Mapping speed to data transmission rate
 There is a corresponding relationship between the speed and the amount of data that a user can send, shown by the speed to data map table. Here is an example of such a table.
 
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214232215782-616351961.png)
+![speed to data rate mapping table](https://i.imgur.com/9gOV7ji.png)
 
 * For example, when the speed of a user is 8, 2158 bytes data can be sent.
 
@@ -91,7 +91,7 @@ There is a corresponding relationship between the speed and the amount of data t
   1. To map the speed to data, use the given F function than rounds the speed considering the floating point error. For example, if the speed U1 collocated with U2 is 10.65, its data is 2696.
   2. the F function is not exactly the same as the know round function because it may roundup a number which is extremly close to the next integer number to avoid the effect of floating point error, for example if the speed is 12.999999, F functions returns 13 rather than 12. 
 
-* For the example in the previous slide, the data sent by each user, in each scenario is calculated as follows: U1={20,5000,0.3}, U2={15,3500,0.25}, U3={26,4200,0.6}.
+* For the example in the previous slide, the data sent by each user, in each scenario is calculated as follows: U1 = {20, 5000, 0.3}, U2 = {15, 3500, 0.25}, U3 = {26, 4200, 0.6}.
 
 ### Objective and Constraints
 Objective: Maximise the sum of average speed of all users ($ \text{Avg_Speed}_i $), formulated as
@@ -104,7 +104,7 @@ Where $ \text{BestSpeedUsers} $ is sum of maximum speed of all users and can be 
 Indeed objective function is a float number between 0 and 1 
 Constraint: More than one instance of the same user cannot be placed in the same column.
 
-Penalty term: As we would like to send all the data, we apply a penalty term that shows which portion of total data of all users cannot be sent (𝐷𝑎𝑡𝑎_𝐿𝑜𝑠𝑠). Indeed, the penalty term is a float number in range 0 to 1, where 0 indicates no data loss. A solution with zero data loss is called as ‘feasible solution’.
+Penalty term: As we would like to send all the data, we apply a penalty term that shows which portion of total data of all users cannot be sent (Data_Loss). Indeed, the penalty term is a float number in range 0 to 1, where 0 indicates no data loss. A solution with zero data loss is called as ‘feasible solution’.
 
 $$
     \text{Penalty_term} =\frac{\sum_{\forall \text{Users}} \text{Data_Loss}_i}{\text{Total_Data_of_All_Users}}
@@ -164,15 +164,15 @@ If the execution time of your code on the VM is far more than 1 second, it is co
 
 #### Output CSV Template
 
-- The first part is called *ASSIGNMENT PART* that includes $M$ rows, number 0 to $M$-1. This part is used for showing assigment of users to grids. 
+- The first part is called *ASSIGNMENT PART* that includes $M$ rows, number 0 to $M-1$. This part is used for showing assigment of users to grids. 
 - The next part is called as *COMPLEMENTARY PART* including four next rows, used to show data loss, user speeds, the goal function value, and the execution time of the algorithm respectively.
  
 - Here we assume we have only 6 users U1, U2, U3, U4, U5 and U6. But generally we could have any given number of users.
 
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221214235227538-1232385172.png)
+![output data format](https://i.imgur.com/vfuAy3z.png)
 
-- Please use comma ’,’ as the seprator of the elements, not other sybmols. We don’t need a comma at the end of rows. Please also use a dash ’-’ to show empty grids in the assignment part, but for other empty parts dash is not needed.
-- As noted in the example, the number of columns of the csv file could be bigger than $N$. Indeed, it is equal to $max (N , \|U\|+1)$
+- Please use comma ‘,’ as the seprator of the elements, not other sybmols. We don’t need a comma at the end of rows. Please also use a dash ‘-’ to show empty grids in the assignment part, but for other empty parts dash is not needed.
+- As noted in the example, the number of columns of the csv file could be bigger than $N$. Indeed, it is equal to $\max (N , \|U\|+1)$
 
 ### Evaluation in Leaderboard
 
@@ -215,8 +215,7 @@ Different from traditional ACM problems, this problem is considered NP-hard, whi
 
 Now, try to mathematical analyze and form the optimization goal as follow:
 
-Find $$ \mathbf{e}_{U\times N} $$ , where $$ e_{ij} = \{0,1\} $$ .
-The problem now is representing as a requiry of a 0-1 matrix, where the corresponding element $ e_{ij} $ represents whether the $ i $ -th user exists on $ j $ -th column of channel.
+Find decision 0-1 matrix $$ \mathbf{e}_{U\times N} $$ , where $$ e_{ij} = \{0,1\} $$ . The problem now is representing as a requiry of a 0-1 matrix, where the corresponding element $ e_{ij} $ represents whether the $ i $ -th user exists on $ j $ -th column of channel.
 
 ### Goal Function
 $$
@@ -232,16 +231,19 @@ $$
 where
 
 $$
-    \begin{aligned}
+\begin{aligned}
     g(\mathbf{e}_{U\times N}) &= \sum_{i=1}^{U} w_i {v_{0}}_i k_i \frac{\sum_{j=1}^{N} \sum_{l=1}^{U} e_{ij}e_{lj}k_l}{\sum_{j=1}^{N} e_{ij}}\\
-    &= \sum_{i=1}^{U} \beta_i  \frac{\sum_{j=1}^{N} \sum_{l=1}^{U} e_{ij}e_{lj}k_l}{\sum_{j=1}^{N} e_{ij}}\\
-    \end{aligned}
+    &= \sum_{i=1}^{U} \beta_i  \frac{\sum_{j=1}^{N} \sum_{l=1}^{U} e_{ij}e_{lj}k_l}{\sum_{j=1}^{N} e_{ij}}
+\end{aligned}
 $$
+
+and
+
 $$
-    \begin{aligned}
+\begin{aligned}
     v_{ij} &= {v_{0}}_i \left[ 1-\left(\sum_{l=1, l \neq i}^{U} e_{lj}\cdot k_l \right) \cdot k_i \right] \\
     &={v_{0}}_i \left[ 1-\left(\sum_{l=1}^{U} e_{lj}\cdot k_l -e_{ij}k_i \right) \cdot k_i \right]
-    \end{aligned}
+\end{aligned}
 $$
 
 subject to
@@ -319,6 +321,6 @@ The data structure affects much the coding normalization and running efficiency.
 All in all, it was still a rewarding day of hammering through. trying to form a strong team next time and try again!
 
 Below is a picture of Stockholm City Hall lit up and glowed just in time for Nobel Night:
-![](https://img2023.cnblogs.com/blog/2134749/202212/2134749-20221221035623081-1348047583.png)
+![stockholm cityhall in Nobel Week](https://i.imgur.com/IuzxFD2.png)
 
 Thanks for reading.
