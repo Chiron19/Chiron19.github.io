@@ -1031,7 +1031,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   color: var(--tw-prose-quotes);
   border-left-width: 0.25rem;
   border-left-color: var(--tw-prose-quote-borders);
@@ -1072,7 +1072,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 600;
   font-size: 1.25em;
   margin-top: 1.6em;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.2em;
   line-height: 1.6;
 }
 
@@ -1204,7 +1204,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-prose-counters: #6b7280;
   --tw-prose-bullets: #d1d5db;
   --tw-prose-hr: #e5e7eb;
-  --tw-prose-quotes: #111827;
+  --tw-prose-quotes: #6b7280;
   --tw-prose-quote-borders: #e5e7eb;
   --tw-prose-captions: #6b7280;
   --tw-prose-code: #111827;

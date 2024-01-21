@@ -7,6 +7,8 @@ tags: [experience]
 permalink: huawei_hackathon
 ---
 
+> Huawei Sweden Hackathon is back for the 5th edition with a brand new coding challenge! The challenge: Design and develop a smart data channel allocation algorithm for 5G & 6G. One of the most challenging problems in designing mobile networks is data channel allocation, where many mobile users connected to the baseband need to be served in real-time. -[Huawei Sweden Hackathon](https://huawei-sweden-hackathon-2022.bemyapp.com/)
+
 ![Huawei Sweden Hackathon 2022](https://i.imgur.com/3CVUlOe.png)
 
 [See photo album here. 📸](https://www.flickr.com/photos/bemyapp/albums/72177720304413786/)

@@ -7,6 +7,8 @@ tags: [project]
 permalink: wechat_app
 ---
 
+> WeChat Mini Programs are a new way of connecting users and services. They are easy to access and share on WeChat, delivering excellent user experience. -[WeChat](https://mp.weixin.qq.com/cgi-bin/wx?lang=en_us)
+
 The motivation for this project is to solidate the basic knowledge and skill we have acquired with a simple-to-implement project, visualizing and organizing the webpage on the WeChat platform.
 
 ## Introduction
