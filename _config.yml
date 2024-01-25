@@ -4,14 +4,14 @@ url: "https://chiron19.github.io" # the url of your github pages
 
 # site information used in page title, meta data etc.
 title: "Chiron's Space"
-description: A Github Pages (Jekyll) template based on TailwindCSS
+description: Chiron's Personal Website, A Github Pages (Jekyll) based on TailwindCSS
 
 # color theme for links
 theme-color: indigo # indigo|yellow|pink|green|stone|
 
 # homepage information
 author: Ziyang Song
-author-bio: The first and best victory is to conquer self.  <i>—Plato</i>
+author-bio: The first and best victory is to conquer self.<br><i>—Plato</i>
 # Master's student in Information and Network <span style="white-space: no-wrap;">Engineering (EECS, KTH),</span><br>Ongoing master thesis project "<i>A New Privacy-Federated Learning Framework for Simulating User Interactions</i>" # change to false to hide
 author-image: AI_pic.jpg  # file must be in the /assets/img/ folder
 
