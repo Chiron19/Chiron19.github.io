@@ -11,7 +11,8 @@ theme-color: indigo # indigo|yellow|pink|green|stone|
 
 # homepage information
 author: Ziyang Song
-author-bio: Master's student in Information and Network Engineering (EECS, KTH),<br>Ongoing master thesis project "<i>A New Privacy-Federated Learning Framework for Simulating User Interactions</i>" # change to false to hide
+author-bio: The first and best victory is to conquer self.  <i>—Plato</i>
+# Master's student in Information and Network <span style="white-space: no-wrap;">Engineering (EECS, KTH),</span><br>Ongoing master thesis project "<i>A New Privacy-Federated Learning Framework for Simulating User Interactions</i>" # change to false to hide
 author-image: AI_pic.jpg  # file must be in the /assets/img/ folder
 
 # navigation menu
@@ -45,3 +46,7 @@ google-analytics: G-WCRC1TC2V5
 # jekyll plugins - no need to change
 plugins:
     - jekyll-seo-tag
+
+collections:
+  tweets:
+    output: true

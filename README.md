@@ -1,5 +1,10 @@
 # About
 
+Jekyll Based Github Pages: see tutorial on [Jekyll](https://jekyllrb.com). If all set, run the following command to test running locally:
+```
+bundle exec jekyll serve
+```
+
 Tailpages (Tailwind + Github Pages) is a Jekyll website template based on TailwindCSS, which can be hosted by Github for free. You can visit the demo site at [https://harrywang.me/](https://harrywang.me/).
 
 Key features are:

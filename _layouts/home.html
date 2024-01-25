@@ -11,12 +11,15 @@ layout: default
       alt="author profile image">
     <h1>{{site.author}}</h1>
   </div>
-  {% if site.author-bio %}
+  {%- if site.author-bio -%}
   <div class="mx-auto text-center w-4/5">
-    <p class="--tw-prose-body pb-4">{{site.author-bio}}</p>
+    <p class="--tw-prose-body">{{site.author-bio}}</p>
   </div>
-  {% endif %}
+  {%- endif -%}
 </div>
+</div>
+<div class="text-center px-4 prose prose-{{site.theme-color}}">
+  {{content}}
 </div>
 
 {% include social-media.html %}
