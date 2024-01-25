@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['"Inclusive Sans"', ...defaultTheme.fontFamily.sans],
+        sans: ['Hanken Grotesk Variable', ...defaultTheme.fontFamily.sans],
       },
     },
   },
@@ -40,7 +40,8 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@fontsource/inclusive-sans'),
+    require('@fontsource-variable/hanken-grotesk'),
+    // require('@fontsource/inclusive-sans'),
   ],
 
 }
