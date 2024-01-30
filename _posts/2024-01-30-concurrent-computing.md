@@ -10,7 +10,7 @@ permalink: concurrent_computing
 
 A register has two operations: `read()` and `write()`
 
-Sequential specification
+### Sequential specification
 ```
 read():
 return(x)
@@ -21,6 +21,7 @@ x <- v; return(ok)
 
 ## Simplifications
 We assume that registers contain only integers
+
 Unless explicitly stated otherwise, registers are initially supposed to contain 0
 
 ## Dimensions
@@ -43,7 +44,7 @@ if read() after write(v): return(v)
 else return(last written v’) or return(this written v)
 ```
 
-    - Atomic execution
+    - Atomic execution<br>
 Appeared as sequential
 ```
 if read() after write(v): return(v)
@@ -62,7 +63,9 @@ NB. We distinguish base and high-level registers
 
 ### Conventions (2)
 The operations to be implemented are denoted `Read()` and `Write()`
+
 Those of the base registers are denoted `read()` and `write()`
+
 We omit the `return(ok)` instruction at the end of `Write()` implementations
 
 ## (1) From (binary) SRSW safe to (binary) MRSW safe
@@ -143,6 +146,7 @@ We use N*N SRSW atomic registers `RReg[(1,1),(1,2),..,(k,j),..(N,N)]` to communi
 We also use N SRSW atomic registers `WReg[1,..,N]` to store new values
  - the writer in all these is p1
  - the reader in `WReg[k]` is pk
+
 ```
 Write(v):
 t1 := t1+1;
@@ -196,8 +200,10 @@ Wait-free implementations of atomic objects
 - An object is defined by its sequential specification; i.e., by how its operations should be implemented when there is no concurrency: being atomic means preserving the sequential semantics
 - Implementations should be wait-free: every process that invokes an operation eventually gets a reply (unless the process crashes)
 
-## Counter (sequential spec)
+## Counter 
 A counter has two operations `inc()` and `read()` and maintains an integer x init to 0
+
+### Sequential Spec
 ```
 read():
 return(x)
@@ -232,8 +238,10 @@ for j = 1 to n do
 return(sum)
 ```
 
-## Snapshot (sequential spec) 
+## Snapshot
 A snapshot has operations `update()` and `scan()` and maintains an array `x` of size N
+
+### Sequential Spec
 ```
 scan():
 return(x)
@@ -258,6 +266,7 @@ return(ok)
 
 ### Non-atomic vs atomic snapshot
 What we implement here is some kind of regular snapshot:
+
 A scan returns, for every index of the snapshot, the last written values or the value of any concurrent update
 We call it collect
 
@@ -338,13 +347,14 @@ Can we do better?
 
 ### Bound on SWSR atomic register implementations
 **Theorem 1.** There is **no** wait-free algorithm that:
-● Implements a SRSW atomic register,
-● Uses a finite number of bounded SRSW regular registers,
-● And where the base registers can only be written by the writer (of the atomic register).
+- Implements a SRSW atomic register,
+- Uses a finite number of bounded SRSW regular registers,
+- And where the base registers can only be written by the writer (of the atomic register).
 
 ### Proving an impossibility result
 #### General strategy
 Build a “general” counter-example (adversarial model)
+
 For any algorithm (given the hypotheses), you (the adversary) can always create a scenario/example that violates (one of) the properties it is meant to achieve
 
 #### Building an adversarial counter-example
@@ -369,6 +379,7 @@ We are the adversary crafting a general counter-example. Consider any algorithm 
 
 #### Constructing the adversarial example
 The writer alternates between writing 0 and 1 on the atomic register, forever.
+
 What is the state of reg after each `Write(0)`?
 
 “Hypothesis 2”: Finite number of bounded registers → the underlying register `reg` can only take a finite (limited) number of different values
@@ -379,9 +390,9 @@ Claim: there are values v0, v1, ... vn, such that reg changes directly from v(i)
 
 ### Bound on SWMR atomic register implementations
 **Theorem 2.** There is **no** wait-free algorithm that:
-● Implements a SWMR atomic register,
-● Uses any number of SWSR atomic registers,
-● And where the base registers can only be written by the writer (of the SWMR register).
+- Implements a SWMR atomic register,
+- Uses any number of SWSR atomic registers,
+- And where the base registers can only be written by the writer (of the SWMR register).
 
 # The Limitations of Registers
 
@@ -663,11 +674,11 @@ Universality (1 + 2)
 § An object is non-deterministic if the result and final state of an operation might differ even with the same initial state and the same arguments
 
 A restricted deterministic type
-- Assume that a non-deterministic type T is defined by a relation $$\delta$$ that maps each state $$s$$ and each request $$o$$ to a set of pairs $$(s’,r)$$, where $$s’$$ is a new state and $$r$$ is the returned result after applying request $$o$$ to an object of T in state $$s$$.
-- Define a function $$\delta'$$ as follows: For any $$s$$ and $$o$$, $$\delta’(s,o) \in \delta(s,o)$$.
-The type defined by $$\delta’$$ is deterministic
+- Assume that a non-deterministic type T is defined by a relation $\delta$ that maps each state $s$ and each request $o$ to a set of pairs $(s’,r)$, where $s’$ is a new state and $r$ is the returned result after applying request $o$ to an object of T in state $s$.
+- Define a function $\delta'$ as follows: For any $s$ and $o$, $\delta’(s,o) \in \delta(s,o)$.
+The type defined by $\delta’$ is deterministic
 
-It is sufficient to implement a type defined by $$\delta'$$ !
+It is sufficient to implement a type defined by $\delta'$ !
 - Every execution of the resulting (deterministic) object will satisfy the specification of T.
 
 Task 3 (Preserving non-determinism) 
