@@ -12,5 +12,3 @@ permalink: tag
     {% endfor %}
   </ul>
 {% endfor %}
-
-

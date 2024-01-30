@@ -10,7 +10,8 @@ permalink: tweet
 </div>
 
 <div>
-  {% for tweet in site.tweets %}
+  {% assign sorted_tweets = site.tweets | sort: "title" | reverse | sort: "date" | reverse %}
+  {% for tweet in sorted_tweets %}
     <div class="py-1">
       <div class="text-sm text-gray-400">{{tweet.date | date: "%B %-d, %Y"}}</div>
       <div class="pt-4 px-4 prose prose-{{site.theme-color}}">
