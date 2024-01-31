@@ -13,12 +13,12 @@ permalink: concurrent_computing
 A register has two operations: `read()` and `write()`
 
 ### Sequential specification
-```
+```c
 read():
-return(x)
+  return(x)
 
 write(v):
-x <- v; return(ok)
+  x <- v; return(ok)
 ```
 
 ## Simplifications
@@ -35,20 +35,20 @@ Unless explicitly stated otherwise, registers are initially supposed to contain 
 - Dimension 3: safe – regular – atomic
 
     - Safe execution
-```
+```c
 if read() after write(v): return(v)
 else return(random anything)
 ```
 
     - Regular execution
-```
+```c
 if read() after write(v): return(v)
 else return(last written v’) or return(this written v)
 ```
 
     - Atomic execution<br>
-Appeared as sequential
-```
+Appeared as sequential (Only consider as a linearization point)
+```c
 if read() after write(v): return(v)
 else return(last written v’)
 ```
@@ -72,9 +72,9 @@ We omit the `return(ok)` instruction at the end of `Write()` implementations
 
 ## (1) From (binary) SRSW safe to (binary) MRSW safe
 We use an array of SRSW registers `Reg[1,…,N]`
-```
+```c
 Read():
-  return (Reg[i].read());
+  return(Reg[i].read());
 
 Write(v):
   for j = 1 to N 
@@ -91,7 +91,7 @@ SRSW atomic -> MRSW atomic ❌
 
 ## (2) From binary MRSW safe to binary MRSW regular
 We use one MRSW safe register
-```
+```c
 Read():
   return(Reg.read());
 
@@ -109,7 +109,7 @@ It does not work for atomic registers
 
 ## (3) From binary to M-valued MRSW regular
 We use an array of MRSW registers  `Reg[0,1,…,M]` init to `[1,0,…,0]` (Unary Coding)
-```
+```c
 Read():
   for j = 0 to M
 	  if Reg[j].read() = 1 then return(j)
@@ -126,9 +126,9 @@ The transformation works for regular but **NOT** for atomic registers
 
 ## (4) From SRSW regular to SRSW atomic
 We use one SRSW register `Reg` and two local variables `t` and `x`
-```
+```c
 Read():
-  (t’,x’) = Reg.read();
+  (t’,x’) := Reg.read();
   if t’ > t then t := t’; x := x’; 
   return(x)
 
@@ -145,23 +145,23 @@ The transformation would not work without timestamps
 ## (5) From SRSW atomic to MRSW atomic
 We use N*N SRSW atomic registers `RReg[(1,1),(1,2),…,(k,j),…,(N,N)]` to communicate among the readers
 - In `RReg[(k,j)]` the reader is pk and the writer is pj
-- We also use N SRSW atomic registers `WReg[1,..,N]` to store new values
+- We also use N SRSW atomic registers `WReg[1,…,N]` to store new values
 - the writer in all these is p1
 - the reader in `WReg[k]` is pk
 
-```
+```c
 Write(v):
   t1 := t1+1;
   for j = 1 to N
-    WReg.write(v,t1);
+    WReg[j].write(v,t1);
 
 Read():
   for j = 1 to N do
-    (t[j],x[j]) = RReg[i,j].read();
-  (t[0],x[0]) = WReg[i].read();
+    (t[j],x[j]) := RReg[i,j].read();
+  (t[0],x[0]) := WReg[i].read();
   (t,x) := highest(t[..],x[..]); // Value with highest timestamp
   for j = 1 to N do
-  RReg[j,i].write(t,x);
+    RReg[j,i].write(t,x);
   return(x)
 ```
 
@@ -171,17 +171,17 @@ The transformation would not work if the readers do not communicate (i.e., if a 
 
 ## (6) From MRSW atomic to MRMW atomic
 We use N MRSW atomic registers `Reg[1,…,N]`; the writer of `Reg[j]` is pj
-```
+```c
 Write(v):
   for j = 1 to N do
-    (t[j],x[j]) = Reg[j].read();
+    (t[j],x[j]) := Reg[j].read();
   (t,x) := highest(t[..],x[..]);
   t := t+1;
   Reg[i].write(t,v);
 
 Read():
   for j = 1 to N do
-    (t[j],x[j]) = Reg[j].read();
+    (t[j],x[j]) := Reg[j].read();
   (t,x) := highest(t[..],x[..]);
   return(x)
 ```
@@ -216,10 +216,10 @@ Question 2: what objects we cannot implement?
 - Implementations should be wait-free: every process that invokes an operation eventually gets a reply (unless the process crashes)
 
 ## Counter 
-A counter has two operations `inc()` and `read()` and maintains an integer x init to 0
+A counter has two operations `inc()` and `read()` and maintains an integer `x` init to 0
 
 ### Sequential Spec
-```
+```c
 read():
   return(x)
 
@@ -229,7 +229,7 @@ inc():
 
 ### Naive implementation
 The processes share one register `Reg`
-```
+```c
 read():
   return(Reg.read())
 
@@ -241,7 +241,7 @@ inc():
 
 ### Atomic implementation
 The processes share an array of registers `Reg[1,…,N]`
-```
+```c
 inc():
   Reg[i].write(Reg[i].read()+1);
   return(ok)
@@ -257,7 +257,7 @@ read():
 A snapshot has operations `update()` and `scan()` and maintains an array `x` of size N
 
 ### Sequential Spec
-```
+```c
 scan():
   return(x)
 
@@ -268,7 +268,7 @@ update(i,v):
 
 ### Naive implementation
 The processes share one array of N registers `Reg[1,…,N]`
-```
+```c
 scan():
   for j = 1 to N do
     x[j] := Reg[j].read();
@@ -298,7 +298,7 @@ Same value ← Same timestamp
 The processes share one array of N registers `Reg[1,…,N]`; each contains a value and a timestamp
 
 We use the following operation for modularity
-```
+```c
 collect():
   for j = 1 to N do
     x[j] := Reg[j].read();
@@ -309,7 +309,7 @@ scan():
   while(true) do
     temp2 := self.collect();
     if (temp1 = temp2) then
-      return (temp1.val)
+      return(temp1.val)
     temp1 := temp2;
 
 update(i,v):
@@ -333,10 +333,10 @@ To **update**, a process scans and writes the value, the new timestamp and the r
 
 ### Snapshot implementation
 Every process keeps a local timestamp `ts`
-```
+```c
 update(i,v):
   ts := ts+1;
-  Reg[i].write(v, ts, self.scan());
+  Reg[i].write(v,ts,self.scan());
   return(ok)
 
 scan():
@@ -344,7 +344,7 @@ scan():
   t2 := t1
   while(true) do
     t3 := self.collect();
-    if (t3 = t2) then return (t3); // Return 1st value in each cell in t3
+    if (t3 = t2) then return (t3[..].value); // Return value for 1 to N in t3
     for j = 1 to N do
       if (t3[j].timestamp ≥ t1[j].timestamp+2) then // Have update after scan() begin
         return (t3[j].scancopy)
@@ -439,7 +439,7 @@ Uses two registers `R0` and `R1`, and a Fetch&Inc object `C` (with one `fetch&in
 (NB. The value in `C` is initialized to 0) 
 
 Process pI:
-```
+```c
 propose(vI):
 	R[I].write(vI)
 	val := C.fetch&inc()
@@ -461,7 +461,7 @@ No algorithm implements Fetch&Inc among two processes using only registers
 Uses two registers `R0` and `R1`, and a queue `Q`; `Q` is initialized to {winner, loser}
 
 Process pI:
-```
+```c
 propose(vI):
 	R[I].write(vI)
 	item := Q.dequeue()
@@ -482,7 +482,7 @@ If the two processes decide, they decide on the value written in the same regist
 - A Test&Set object maintains binary values `x`, init to 0, and `y`; it provides one operation: `test&set()`
 
 Sequential spec:
-```
+```c
 test&set():
 	y := x; x: = 1; return(y)
 ```
@@ -490,7 +490,7 @@ test&set():
 - A Compare&Swap object maintains a value `x`, init to ⊥, and provides one operation: `compare&swap(v,w)`
 
 Sequential spec:
-```
+```c
 compare&swap(old,new):
 	if x = old then x := new; return(x)
 ```
@@ -499,7 +499,7 @@ compare&swap(old,new):
 Uses two registers `R0` and `R1`, and a Test&Set object `T`
 
 Process pI:
-```
+```c
 propose(vI):
 	R[I].write(vI)
 	val := T.test&set()
@@ -511,7 +511,7 @@ propose(vI):
 Uses a Compare&Swap object `C`
 
 Process pI:
-```
+```c
 propose(vI):
 	val := C.compare&swap(⊥, vI)
 	if(val = ⊥) then return(vI)
@@ -542,7 +542,7 @@ An asynchronous system is one with no constraint on the schedules: any sequence 
 - Every process that executes an infinite number of steps eventually decides
 
 ### Impossibility (elements)
-1. a (initial) **configuration** C is a set of (initial) values of p0 and p1 together with the values of the registers: R1 … Rk …;
+1. a (initial) **configuration** C is a set of (initial) values of p0 and p1 together with the values of the registers: `R1 … Rk …`;
 2. a **step** is an elementary action executed by some process pI: it consists in reading or writing a value in a register and changing pI’s state according to the algorithm A;
 3. a **schedule** S is a sequence of steps; S(C) denotes the configuration that results from applying S to C.
 
@@ -762,7 +762,7 @@ To simplify the presentation, we assume two functions applied to `Reg[1,…,N]`
 - `highestTspValue()` returns the value with the highest timestamp among all elements `Reg[1].V`, `Reg[2].V`, …, `Reg[N].V`
 
 ### Algorithm
-```
+```c
 propose(v): 
   while(true) do
     Reg[i].T.write(ts); // (1)
@@ -792,7 +792,7 @@ The idea is to use <>leader to make sure that, eventually, one process keeps exe
 **Property**: If a correct process invokes leader, then the invocation returns and _eventually_, some correct process is _permanently_ the only leader
 
 ### Algorithm
-```
+```c
 propose(v):
   while(true) do
     if leader() then
@@ -809,7 +809,7 @@ propose(v):
 - Every process periodically seeks for a value in `Dec`
 
 ## Consensus
-```
+```c
 propose(v):
   while (Dec.read() = ⊥) do
     if leader() then
@@ -849,13 +849,13 @@ propose(v):
 - `last[j]` and `Reg[j]` are initialized to 0
 
 #### Algorithm
-```
+```c
 leader():
   clock := 0;
   while(true) do
     if (leader=self) then
       Reg[i].write(Reg[i].read()+1);
-    clock := clock + 1;
+    clock := clock+1;
     if (clock = check) then elect();
 
 elect():
@@ -883,20 +883,20 @@ There is a time after which a lower and an upper bound hold on the time it takes
 ## Counter
 ### Sequential Spec
 A counter has two operations `inc()` and `read()` and maintains an integer `x` init to 0
-```
+```c
 read():
   return(x)
   
 inc():
-  x := x + 1;
+  x := x+1;
   return(ok)
 ```
 ### Atomic Implementation
 The processes share an array of SWMR registers
 `Reg[1,…,n]` ; the writer of register `Reg[i]` is pi
-```
+```c
 inc():
-  temp := Reg[i].read() + 1;
+  temp := Reg[i].read()+1;
   Reg[i].write(temp);
   return(ok)
 
@@ -909,9 +909,9 @@ read():
 
 ## Weak Counter
 A **weak counter** has one operation `wInc()`
-```
+```c
 wInc():
-  x := x + 1;
+  x := x+1;
   return(x)
 ```
 
@@ -923,18 +923,18 @@ NB. Resembles a regular Fetch&Inc object
 
 ### Lock-free Implementation
 The processes share an (infinite) array of MWMR registers `Reg[1,…,n,…]`, init to 0
-```
+```c
 wInc():
   i := 0;
   while (Reg[i].read() ≠ 0) do
-    i := i + 1;
+    i := i+1;
   Reg[i].write(1);
   return(i);
 ```
 
 ### Wait-free Implementation
 The processes also use a MWMR register `L`
-```
+```c
 wInc():
   i := 0;
   while (Reg[i].read() ≠ 0) do
@@ -946,7 +946,7 @@ wInc():
 ```
 
 Organized Vers: 
-```
+```c
 wInc():
   t := l := L.read();
   i := k := 0;
@@ -966,12 +966,12 @@ wInc():
 ### Sequential Spec
 A **snapshot** has operations `update()` and
 `scan()` and maintains an array `x` of size n
-```
+```c
 scan():
   return(x)
 ```
 NB. No component is devoted to a process
-```
+```c
 update(i,v):
   x[i] := v;
   return(ok)
@@ -994,7 +994,7 @@ the new timestamp and the result of the scan
 
 ###  Implementation
 Every process keeps a local timestamp `ts`
-```
+```c
 update(i,v):
   ts := Wcounter.wInc();
   Reg[i].write(v,ts,self.scan());
@@ -1017,7 +1017,7 @@ Every process holds an integer `i` init to 1
 
 Idea: to impose a value `v`, a process needs to be fast enough to fill in registers `Reg{v}[i]`
 
-```
+```c
 propose(v):
   while(true) do
     if Reg{1-v}[i] = 0 then
@@ -1030,14 +1030,14 @@ propose(v):
 ### solo process & lock-step
 
 ### Binary
-```
+```c
 propose(v):
   while(true) do
     if Reg{1-v}[i] = 0 then
       Reg{v}[i] := 1;
       if i > 1 and Reg{1-v}[i-1] = 0 then return(v);
     else if Reg{v}[i] = 0 then v := 1-v;
-    if v = 1 then wait(2i)
+    if v = 1 then wait(2*i)
     i := i+1;
 ```
 
@@ -1086,36 +1086,36 @@ Every transaction has local variables `wSet` and `wLog`<br>
 Initially: l(O) = unlocked, `wSet` = `wLog` = ∅
 
 ### Algorithm
-```
+```c
 Upon op = read() or write(v) on object O
   if O ∉ wSet then
-    wait until unlocked= l(O).c&s(unlocked,locked)
-    wSet = wSet U O
-    wLog = wLog U S(O).read()
+    wait until unlocked = l(O).c&s(unlocked,locked)
+    wSet := wSet U O
+    wLog := wLog U S(O).read()
   if op = read() then return S(O).read()
   S(O).write(v)
   return ok
 ```
-```
+```c
 Upon commit()
   cleanup()
   return ok
 ```
-```
+```c
 Upon abort()
   rollback()
   cleanup()
   return ok
 ```
-```
+```c
 Upon rollback()
   for all O ∈ wSet do S(O).write(wLog(O))
-  wLog = ∅
+  wLog := ∅
 ```
-```
+```c
 Upon cleanup()
   for all O ∈ wSet do l(O).write(unlocked)
-  wSet = ∅
+  wSet := ∅
 ```
 
 ### Why two phases?
@@ -1167,50 +1167,50 @@ Upon cleanup()
 - Every transaction maintains, besides `wSet` and `wLog`
 - A local variable `rset(O)` for every object
 
-```
+```c
 Upon write(v) on object O
   if O ∉ wSet then
-    wait until unlocked= l(O).c&s(unlocked,locked)
-    wSet = wSet U O
-    wLog = wLog U S(O).read()
-  (*,ts) = S(O).read()
+    wait until unlocked = l(O).c&s(unlocked,locked)
+    wSet := wSet U O
+    wLog := wLog U S(O).read()
+  (*,ts) := S(O).read()
   S(O).write(v,ts)
   return ok
 ```
-```
+```c
 Upon read() on object O
-  (v,ts) = S(O).read()
+  (v,ts) := S(O).read()
   if O ∈ wSet then return v
   if l(O) = locked or not validate() then abort()
-  if rset(O) = 0 then rset(O) = ts
+  if rset(O) = 0 then rset(O) := ts
   return v
 ```
-```
+```c
 Upon validate()
   for all O s.t rset(O) > 0 do
-    (v,ts) = S(O).read()
+    (v,ts) := S(O).read()
     if ts ≠ rset(O) or (O ∉ wset and l(O) = locked) then 
       return false
     else return true
 ```
-```
+```c
 Upon commit()
   if not validate() then abort()
   for all O ∈ wset do
-    (v,ts) = S(O).read()
+    (v,ts) := S(O).read()
   S(O).write(v,ts+1)
   cleanup()
 ```
-```
+```c
 Upon rollback()
   for all O ∈ wSet do S(O).write(wLog(O))
-  wLog = ∅
+  wLog := ∅
 ```
-```
+```c
 Upon cleanup()
   for all O ∈ wset do l(O).write(unlocked)
-  wset = ∅
-  rset(O) = 0 for all O
+  wset := ∅
+  rset(O) := 0 for all O
 ```
 
 ### DSTM (SUN)
@@ -1307,30 +1307,30 @@ NB. In the asynchronous model, it is impossible to distinguish a _non-responsive
 2. Implements a SWSR register out of `2t+1` SWSR base non-responsive failure-prone registers
 
 ### Responsive model
-```
+```c
 Write(v):
   for j = 1 to (t+1) do
     Reg[j].write(v);
    return(ok)
    
 Read():
-  for j = t+1 to 1 do
+  for j = t+1 downto 1 do
     v := Reg[j].read();
     if v ≠ ⟂ then return(v)
 ```
 
 ### Non-responsive model
-```
+```c
 Init: seq := 1
 
 Write(v):
   w_seq := w_seq + 1;
   for j = 1 to (2t+1) do
     Reg[j].write(w_seq, v);
-  « wait until a majority of oks are returned »
+  // wait until a majority of oks are returned
   return(ok)
 ```
-```
+```c
 Init: (sn,val) := (-1, ⟂);
 
 Read():
