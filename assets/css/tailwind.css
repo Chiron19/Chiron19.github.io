@@ -643,7 +643,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .max-w-prose {
-  max-width: 65ch;
+  max-width: 100ch;
 }
 
 .flex-col {
@@ -957,7 +957,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .prose {
   color: var(--tw-prose-body);
-  max-width: 65ch;
+  max-width: 100ch;
 }
 
 .prose :where([class~="lead"]):not(:where([class~="not-prose"] *)) {
@@ -1122,11 +1122,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *)) {
-  color: #DD1144;
+  color: var(--tw-prose-code);
+  background-color: var(--tw-prose-code-bg);
   font-weight: 400;
   font-size: 0.875em;
   padding: 0.2em 0.4em;
-  background-color: #F3F3F3;
   border-radius: 0.25rem;
 }
 
@@ -1135,8 +1135,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
-  color: #1F2933;
-  background-color: #F3F3F3;
+  color: var(--tw-prose-pre-code);
+  background-color: var(--tw-prose-pre-bg);
   overflow-x: auto;
   font-weight: 400;
   font-size: 0.875em;
@@ -1224,9 +1224,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-prose-quotes: #6b7280;
   --tw-prose-quote-borders: #e5e7eb;
   --tw-prose-captions: #6b7280;
-  --tw-prose-code: #111827;
-  --tw-prose-pre-code: #e5e7eb;
-  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-code: #DD1144;
+  --tw-prose-code-bg: #f3f3f3;
+  --tw-prose-pre-code: #1f2937;
+  --tw-prose-pre-bg: #e5e7eb;
   --tw-prose-th-borders: #d1d5db;
   --tw-prose-td-borders: #e5e7eb;
   --tw-prose-invert-body: #d1d5db;
@@ -1609,9 +1610,10 @@ html[data-theme="dark"] {
     --tw-prose-quotes: #eee;
     --tw-prose-quote-borders: #e5e7eb;
     --tw-prose-captions: #6b7280;
-    --tw-prose-code: #fff;
+    --tw-prose-code: #fc8b8b;
+    --tw-prose-code-bg: #333333;
     --tw-prose-pre-code: #e5e7eb;
-    --tw-prose-pre-bg: #fff;
+    --tw-prose-pre-bg: #333333;
     --tw-prose-th-borders: #d1d5db;
     --tw-prose-td-borders: #e5e7eb;
     --tw-prose-invert-body: #d1d5db;

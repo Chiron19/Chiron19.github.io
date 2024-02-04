@@ -28,10 +28,28 @@
     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   
     <!-- highlight.js -->
-   <link rel="stylesheet"
-    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+   <link id="highlight-style" rel="stylesheet">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
+  <script>
+    // Create a new MutationObserver instance
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === "data-theme") {
+          var theme = document.documentElement.dataset.theme;
+          const highlightStyle = document.getElementById('highlight-style');
+          if (theme === 'light') {
+            highlightStyle.href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github.min.css";
+          } else if (theme === 'dark') {
+            highlightStyle.href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css";
+          }
+        }
+      });
+    });
+
+    // Start observing the documentElement for attribute changes
+    observer.observe(document.documentElement, { attributes: true });
+  </script>
   
   <!-- MathJax -->
   <script>

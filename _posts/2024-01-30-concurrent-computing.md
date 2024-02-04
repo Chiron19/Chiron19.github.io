@@ -594,6 +594,9 @@ But then p0(p1(D)) = p0(D) (resp. p1(p0(D)) = p1(D)) --- a contradiction.
 - In infinite schedule S, at least one process executes an infinite number of steps and does not decide
 - A contradiction with the assumption that A implements consensus.
 
+#### Reference
+Encyclopedia of Algorithms, Second Edition, Page 152, _Asynchronous Consensus Impossibility_, 1985; Fischer, Lynch, Paterson
+
 # Universal constructions
 
 ## Universality [Her91]
@@ -717,12 +720,12 @@ While `lInv–lPerf` is not empty
 # Implementing the Consensus Object with Timing Assumptions
 
 ## A modular approach
-We implement _Wait-free Consensus (Consensus)_ through:<br>
+We implement __Wait-free Consensus (Consensus)__ through:<br>
 _Lock-free Consensus (L-Consensus)_
 and
-_Registers_
+__Registers_
 
-We implement L-Consensus through:<br>
+We implement __L-Consensus__ through:<br>
 _Obstruction-free Consensus (O-Consensus)_
 and
 _<>Leader_ (encapsulating timing assumptions and

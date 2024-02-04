@@ -4,7 +4,8 @@ title: Blog
 permalink: blog
 ---
 
-<div>
+<div style="display:flex; flex-direction:column; align-items:center; ">
+<div style="width: fit-content;">
   {% for post in site.posts %}
     <div class="py-1">
       <h3><a href="{{site.baseurl}}{{ post.url }}">{{post.title}}</a></h3>
@@ -12,5 +13,4 @@ permalink: blog
     </div>
   {% endfor %}
 </div>
-
-
+</div>
