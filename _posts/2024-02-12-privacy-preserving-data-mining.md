@@ -21,7 +21,7 @@ sacrificing the utility of the data.
 
 # PPDM Framework
 
-![A framework for PPDM](https://i.imgur.com/8nbubGB.png)
+<img class="mx-auto w-1/2" src="https://i.imgur.com/8nbubGB.png" alt="A framework for PPDM">
 
 - Level 1, data transform (DS -> DW)<br>
 The raw data from a single or multiple databases is transformed into a format that is well-suited for analytical purposes. Even at this stage, privacy concerns are needed to be taken care of.
@@ -89,22 +89,28 @@ The basic form of the data:
 
 **Examples**:
 
+<div>
+
+<button type="button" class="collapsible-button">Click to expand</button>
+
+<div class="collapsible-content" markdown="1">
+
 This example below is quoted from Wikipedia.
 
-Patients Record (Original)
+Patients Record (Original) <sup><sub>(Height unit: cm, Weight unit: kg)</sub></sup>
 
 | Name | Age | Gender | Height | Weight | State of domicile | Religion | Disease |
 | --- | --- | --- | --- | --- | --- | --- | --- | 
-| Ramsha | 30 | Female | 165 cm | 72 kg | Tamil Nadu | Hindu | Cancer |
-| Yadu | 24 | Female | 162 cm | 70 kg | Kerala | Hindu | Viral infection |
-| Salima | 28 | Female | 170 cm | 68 kg | Tamil Nadu | Muslim | Tuberculosis |
-| Sunny | 27 | Male | 170 cm | 75 kg | Karnataka | Parsi | No illness |
-| Joan | 24 | Female | 165 cm | 71 kg | Kerala | Christian | Heart-related |
-| Bahuksana | 23 | Male | 160 cm | 69 kg | Karnataka | Buddhist | Tuberculosis |
-| Rambha | 19 | Male | 167 cm | 85 kg | Kerala | Hindu | Cancer |
-| Kishor | 29 | Male | 180 cm | 81 kg | Karnataka | Hindu | Heart-related |
-| Johnson | 17 | Male | 175 cm | 79 kg | Kerala | Christian | Heart-related |
-| John | 19 | Male | 169 cm | 82 kg | Kerala | Christian | Viral infection |
+| Ramsha | 30 | Female | 165 | 72 | Tamil Nadu | Hindu | Cancer |
+| Yadu | 24 | Female | 162 | 70 | Kerala | Hindu | Viral infection |
+| Salima | 28 | Female | 170 | 68 | Tamil Nadu | Muslim | Tuberculosis |
+| Sunny | 27 | Male | 170 | 75 | Karnataka | Parsi | No illness |
+| Joan | 24 | Female | 165 | 71 | Kerala | Christian | Heart-related |
+| Bahuksana | 23 | Male | 160 | 69 | Karnataka | Buddhist | Tuberculosis |
+| Rambha | 19 | Male | 167 | 85 | Kerala | Hindu | Cancer |
+| Kishor | 29 | Male | 180 | 81 | Karnataka | Hindu | Heart-related |
+| Johnson | 17 | Male | 175 | 79 | Kerala | Christian | Heart-related |
+| John | 19 | Male | 169 | 82 | Kerala | Christian | Viral infection |
 
 - Explicit Identifiers: Name 
 - Quasi Identifiers: Age, Gender, State of domicile, and Religion
@@ -115,23 +121,29 @@ Certain values of the attributes are replaced by an asterisk "\*". E.g., we have
 2. Generalization.<br>
 Individual values of attributes are replaced with a broader category. E.g., the value "19" of the attribute _Age_ may be replaced by "≤ 20", etc.
 
-Patient Record (Anonymized)
+Patient Record (Anonymized) <sup><sub>(Height unit: cm, Weight unit: kg)</sub></sup>
 
 | Name | Age | Gender | Height | Weight | State of domicile | Religion | Disease |
 | --- | --- | --- | --- | --- | --- | --- | --- | 
-| * |  (20, 30] | Female | 165 cm | 72 kg | Tamil Nadu | * |  Cancer |
-| * |  (20, 30] | Female | 162 cm | 70 kg | Kerala | * | Viral infection |
-| * |  (20, 30] | Female | 170 cm | 68 kg | Tamil Nadu | * | Tuberculosis |
-| * |  (20, 30] | Male | 170 cm | 75 kg | Karnataka | * | No illness |
-| * |  (20, 30] | Female | 165 cm | 71 kg | Kerala | * | Heart-related |
-| * |  (20, 30] | Male | 160 cm | 69 kg | Karnataka | * | Tuberculosis |
-| * |  [0, 20] | Male | 167 cm | 85 kg | Kerala | * | Cancer |
-| * |  (20, 30] | Male | 180 cm | 81 kg | Karnataka | * | Heart-related |
-| * |  [0, 20] | Male | 175 cm | 79 kg | Kerala | * | Heart-related |
-| * |  [0, 20] | Male | 169 cm | 82 kg | Kerala | * | Viral infection |
+| * |  (20, 30] | Female | 165 | 72 | Tamil Nadu | * |  Cancer |
+| * |  (20, 30] | Female | 162 | 70 | Kerala | * | Viral infection |
+| * |  (20, 30] | Female | 170 | 68 | Tamil Nadu | * | Tuberculosis |
+| * |  (20, 30] | Male | 170 | 75 | Karnataka | * | No illness |
+| * |  (20, 30] | Female | 165 | 71 | Kerala | * | Heart-related |
+| * |  (20, 30] | Male | 160 | 69 | Karnataka | * | Tuberculosis |
+| * |  [0, 20] | Male | 167 | 85 | Kerala | * | Cancer |
+| * |  (20, 30] | Male | 180 | 81 | Karnataka | * | Heart-related |
+| * |  [0, 20] | Male | 175 | 79 | Kerala | * | Heart-related |
+| * |  [0, 20] | Male | 169 | 82 | Kerala | * | Viral infection |
 
 
 This data has 2-anonymity with respect to the attributes _Age_, _Gender_ and _State of domicile_, since for any combination of these attributes found in any row of the table there are always at least 2 rows with those exact attributes.
+
+
+</div>
+
+</div>
+
 
 ### Pros and Cons
 
@@ -152,6 +164,12 @@ This data has 2-anonymity with respect to the attributes _Age_, _Gender_ and _St
 
 **Examples**: 
 
+<div>
+
+<button type="button" class="collapsible-button">Click to expand</button>
+
+<div class="collapsible-content" markdown="1">
+
 Individual incomes (k$) (Original)
 ```
 [40, 50, 60, 70, 80, 90, 100]
@@ -164,6 +182,10 @@ Individual incomes (k$) (Perturbed)
 ```
 [43, 48, 62, 73, 78, 92, 98]
 ```
+
+</div>
+
+</div>
 
 **Aggregated Statistics**:
 
@@ -202,6 +224,12 @@ better than a pre-defined threshold, whether the data from a customer contains t
 
 **Examples**: 
 
+<div>
+
+<button type="button" class="collapsible-button">Click to expand</button>
+
+<div class="collapsible-content" markdown="1">
+
 The Bayes estimator is one of the Randomized Response algorithm.
 
 1. Scenario: survey about a sensitive topic, such as whether they have ever used illegal drugs.
@@ -215,26 +243,33 @@ Before answering, they flip a coin (event $B$):
 
 Only they know whether their answer reflects the coin toss or their true behavior.
 
-We assume that people who get heads will answer truthfully.
+- We assume that people who get heads will answer truthfully.
+- We assume that the events $A$ and $B$ are independent, so we have joint probability:
 
-Here is the table of result:
+$$P(A \cap B) = P(A) \cdot P(B)$$
 
-| | $A$ | $\bar{A}$ |
+Here is the table of joint probability of two events:
+
+| $P(\cdot)$ | $A$ | $\bar{A}$ |
 | --- | --- | --- |
 | $B$ | $p \cdot q$ | $p \cdot (1-q)$ | 
 | $\bar{B}$| $(1-p) \cdot q$ | $(1-p) \cdot (1-q)$ |
 
-Since $A \& B$, $\bar{A} \& B$, $A \& \bar{B}$ would receive “yes” (with an observed ratio $k$) and $\bar{A} \& \bar{B}$ would receive “no” (with an observed ratio $1-k$),
+Since $A \cap B$, $\bar{A} \cap B$, $A \cap \bar{B}$ would receive “yes” (with an observed ratio $k$) and $\bar{A} \cap \bar{B}$ would receive “no” (with an observed ratio $1-k$),
 we can calculate the target probability $q$ with the prior known probabiliy $p$ and the observed conditional probability $k$:
 
 $$
 \begin{aligned}
-P(\bar{A} | \bar{B}) &= (1-p) \cdot (1-q) = 1-k,\\
+P(\bar{A} \cap \bar{B}) &= (1-p) \cdot (1-q) = 1-k,\\
 &\implies q = 1- \frac{1-k}{1-p}.
 \end{aligned}
 $$
 
 For example, if observed $k=55\%$ and we know $p=50\%$, we could get $q=10\%$.
+
+</div>
+
+</div>
 
 
 ### Pros and Cons
@@ -253,6 +288,12 @@ become more susceptible to adversarial attacks as compared to records in more de
 **Definition**: Condensation approach constructs constrained clusters in dataset and then generates pseudo data from the statistics of these clusters.
 
 **Examples**: 
+
+<div>
+
+<button type="button" class="collapsible-button">Click to expand</button>
+
+<div class="collapsible-content" markdown="1">
 
 Student Record (original)
 
@@ -297,6 +338,10 @@ Student Record (condensated)
 | George | 22 | Male | Math | 4.0 | 
 | Henry | 22 | Male | Math | 3.9 | 
 
+</div>
+
+</div>
+
 ### Pros and Cons
 
 **Pros**:
@@ -317,46 +362,22 @@ avoiding disclosure of sensitive information.
 
 **Examples**: 
 
+<div>
+
+<button type="button" class="collapsible-button">Click to expand</button>
+
+<div class="collapsible-content" markdown="1">
+
 All these methods are almost based on a special encryption protocol known as **Secure Multiparty Computation** (SMC) technology.
 
 In Yao, Andrew C, "_How to generate and exchange secrets_", Proceedings of 27th IEEE Symposium on Foundation of Computer 
 Science, 162-167, 1986 discussed a problem where two millionaires wanted to know who is richer with neither revealing their net worth. So, SMC was coined and developed. SMC defines two basic adversarial models namely (i) **Semi-Honest model** and (ii) **Malicious model**.
 
-One possible solution is to use a protocol based on homomorphic encryption, which is a type of encryption that allows arithmetic operations on encrypted data. The protocol works as follows:
+See more detailed protocols in [Yao's Millionaires' problem](https://en.wikipedia.org/wiki/Yao%27s_Millionaires%27_problem).
 
-1. Alice and Bob agree on a public key $Pub$ and a private key $Pri_A$, $Pri_B$ for the encryption scheme.
-2. Alice encrypts her net worth $x$ with the public key and sends the ciphertext $c$ to Bob.<br>
-  $$
-    A \to B: c := Enc_{Pub}(x)
-  $$
-3. Bob encrypts his net worth $y$ with the public key and adds it to $c$, obtaining $c + e$, where $e$ is the encrypted $y$. 
-  $$
-    B: e := Enc_{Pub}(y)
-  $$
-4. Bob sends $c + e$ back to Alice.
-  $$
-    B \to A: c + e
-  $$
-5. Alice decrypts $c + e$ with the private key and obtains $x + y$, the sum of their net worths.
-  $$
-    A: x + y := Dec_{Pri_A}(c + e)
-  $$
-6. Alice encrypts $x + y$ with the public key and sends the ciphertext $f$ to Bob.
-  $$
-    A \to B: f := Enc_{Pub}(x + y)
-  $$
-7. Bob decrypts $f$ with the private key and obtains $x + y$.
-  $$
-    B: x + y := Dec_{Pri_B}(f)
-  $$
-8. Bob subtracts y from x + y and encrypts the result with the public key, obtaining g, where g is the encrypted x - y.
-Bob sends g to Alice.
-Alice decrypts g with the private key and obtains x - y, the difference of their net worths.
-Alice compares x - y with zero and determines who is richer. If x - y > 0, Alice is richer. If x - y < 0, Bob is richer. If x - y = 0, they are equally rich.
-Alice sends a message to Bob indicating the outcome of the comparison, without revealing the actual value of x - y.
+</div>
 
-This protocol allows Alice and Bob to compare their wealth without revealing their net worths to each other. The only information they exchange is encrypted data, which cannot be decrypted without the private key. The protocol is secure against semi-honest adversaries, who follow the protocol but try to learn extra information from the messages. However, it is not secure against malicious adversaries, who may deviate from the protocol or send false messages. To achieve security against malicious adversaries, more advanced techniques, such as zero-knowledge proofs or verifiable secret sharing, are needed.
-
+</div>
 
 
 ### Pros and Cons
@@ -372,7 +393,28 @@ This protocol allows Alice and Bob to compare their wealth without revealing the
 
 # Introducing Soft Computing Techniques
 
+Soft computing techniques may be used to handle the different challenges offered by the data mining. -> high **MIQ (Machine Intelligence Quotient)**
+
+- [Neural Networks](https://en.wikipedia.org/wiki/Neural_network) are widely used for classification and rule generation. 
+- [Genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) are adaptive, robust, efficient and global search methods, suitable in situations where the search space is large.
+
+See related concepts: [Fuzzy set](https://en.wikipedia.org/wiki/Fuzzy_set), [Rough set](https://en.wikipedia.org/wiki/Rough_set).
+
 # Evaluation Metrics
+
+1. **Performance**: Performance of a mining algorithm 
+is measured in terms of the time required to achieve 
+the privacy criteria. 
+2. **Data Utility**: Data utility is basically a measure of 
+information loss or loss in the functionality of data in 
+providing the results, which could be generated in 
+the absence of PPDM algorithms. 
+3. **Uncertainty level**: It is a measure of uncertainty with 
+which the sensitive information that has been hidden 
+can still be predicted. 
+4. **Resistance**: Resistance is a measure of tolerance 
+shown by PPDM algorithm against various data 
+mining algorithms and models.
 
 ---
 Thanks for reading.
