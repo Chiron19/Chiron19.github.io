@@ -10,10 +10,13 @@ description: Chiron's Personal Website, A Github Pages (Jekyll) based on Tailwin
 theme-color: indigo # indigo|yellow|pink|green|stone|
 
 # homepage information
-author: Ziyang Song
+author: 
+  name: Ziyang Song
+  image: AI_pic.jpg  # file must be in the /assets/img/ folder
 author-bio: The first and best victory is to conquer self.<br><i>—Plato</i>
 # Master's student in Information and Network <span style="white-space: no-wrap;">Engineering (EECS, KTH),</span><br>Ongoing master thesis project "<i>A New Privacy-Federated Learning Framework for Simulating User Interactions</i>" # change to false to hide
-author-image: AI_pic.jpg  # file must be in the /assets/img/ folder
+image: ./assets/img/AI_pic.jpg
+
 
 # navigation menu
 show-nav-menu: true
@@ -35,6 +38,7 @@ linkedin: https://linkedin.com/in/ziyang-song
 medium: false
 google-scholar: false
 email: mailto:ziyang_song@outlook.com
+rss: ./feed.xml
 
 # footer information
 footer-msg: "Powered by Tailpages"
@@ -46,7 +50,18 @@ google-analytics: G-WCRC1TC2V5
 # jekyll plugins - no need to change
 plugins:
     - jekyll-seo-tag
+    - jekyll-feed
 
+# collections
 collections:
   tweets:
     output: true
+
+# jekyll-feed
+feed:
+  posts_limit: 10
+  categories:
+    - tweets
+  collections:
+    - posts
+    - tweets

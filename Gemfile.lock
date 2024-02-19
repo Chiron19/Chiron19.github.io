@@ -73,6 +73,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.2.1)
+  jekyll-feed
   jekyll-postcss-v2
   jekyll-seo-tag
   minima (~> 2.5)
