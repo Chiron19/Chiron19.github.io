@@ -83,9 +83,10 @@
         {% endif %}
 
         {% if site.rss %}
+        <!-- Notice! to align center, final item removes mr-2 class -->
         <a href="{{site.rss}}" target="_blank">
           <button
-            class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+            class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none"
             type="button">
             <i class="fa fa-rss" aria-hidden="true"></i>
           </button>

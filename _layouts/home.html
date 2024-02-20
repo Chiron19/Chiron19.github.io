@@ -9,18 +9,74 @@ layout: default
   <div>
     <img class="object-cover mx-auto h-36 w-36 rounded-full" src="{{site.baseurl}}/assets/img/{{site.author.image}}"
       alt="author profile image">
-    <h1>{{site.author.name}}</h1>
+    <h1 style="font-size:2.5em;" translate="no">{{site.author.name}}</h1>
+    <div id="Japanese_Katakana_Name" style="display: none;">
+      <p style="font-size:1.25em; font-weight: 600; margin: 0em;">ソーン ジーオン</p>
+    </div>
+    <div id="Chinese_Hanji_Name" style="display: none;">
+      <p style="font-size:2.5em; font-weight: 800; margin-top: 0em;">宋 子洋</p>
+    </div>
   </div>
   {%- if site.author-bio -%}
   <div class="mx-auto text-center w-4/5">
-    <p class="--tw-prose-body">{{site.author-bio}}</p>
+    <p class="--tw-prose-body font-light">{{site.author-bio}}</p>
   </div>
   {%- endif -%}
 </div>
 </div>
-<div class="text-center px-4 prose prose-{{site.theme-color}}">
+<div class="text-center px-4 prose prose-{{site.theme-color}} font-normal">
   {{content}}
 </div>
+
+<div id="observe_hanji" class="visually-hidden">China</div>
+<div id="observe_japan" class="visually-hidden">Hello</div>
+<style>
+  .visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  function isHanji() {
+    return document.getElementById('observe_hanji').textContent.includes("中");
+  }
+
+  function isJapanese() {
+    return document.getElementById('observe_japan').textContent.includes("こ");
+  }
+
+  // Create a MutationObserver instance
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (isHanji()) {
+          document.getElementById('Chinese_Hanji_Name').style.display = 'block';
+        } else {
+          document.getElementById('Chinese_Hanji_Name').style.display = 'none';
+        }
+        if (isJapanese()) {
+          document.getElementById('Japanese_Katakana_Name').style.display = 'block';
+        } else {
+          document.getElementById('Japanese_Katakana_Name').style.display = 'none';
+        }
+      }
+    );
+  });
+
+  // Get the target node
+  var targetNode = document.getElementById('observe_hanji');
+
+  // Start observing the target node for changes in its child nodes
+  observer.observe(targetNode, { childList: true, subtree: true, characterData: true });
+});
+</script>
+
 
 {% include social-media.html %}
 {% include footer.html %}

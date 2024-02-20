@@ -21,7 +21,7 @@
 /* For Font Hanken Grotesk Variable */
 /* @import '../font/hanken-grotesk/index.css';
 @import '../font/hanken-grotesk/wght-italic.css'; */
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inclusive+Sans&display=swap');
 
 /* For Noto Serif Hong Kong */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@400;500;600;700;800&display=swap');
@@ -824,6 +824,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 800;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -832,8 +836,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 400;
 }
 
-.font-semibold {
-  font-weight: 600;
+.font-light {
+  font-weight: 300;
+}
+
+.font-extralight {
+  font-weight: 200;
 }
 
 .uppercase {
@@ -1047,7 +1055,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
-  font-weight: 500;
+  font-weight: 300;
   font-style: normal;
   color: var(--tw-prose-quotes);
   border-left-width: 0.25rem;
@@ -1062,8 +1070,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: var(--tw-prose-headings);
   font-weight: 800;
   font-size: 2.25em;
-  margin-top: 0;
-  margin-bottom: 0.8888889em;
+  margin-top: 0.89em;
+  margin-bottom: 0.89em;
   line-height: 1.1111111;
 }
 
