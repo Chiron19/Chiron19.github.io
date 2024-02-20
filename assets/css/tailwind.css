@@ -552,6 +552,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.5rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -1656,6 +1660,8 @@ html[data-theme="dark"] {
 
 /* Style the button that is used to open and close the collapsible content */
 .collapsible-button {
+  display: flex;
+  justify-content: space-between;
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -1668,7 +1674,7 @@ html[data-theme="dark"] {
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible-button:hover {
+.collapsible-button:hover {
   background-color: #ccc;
 }
 
@@ -1680,3 +1686,4 @@ html[data-theme="dark"] {
   /* background-color: #f1f1f1; */
   /* transition: max-height 0.2s ease-out; */
 }
+

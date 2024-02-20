@@ -91,7 +91,10 @@ The basic form of the data:
 
 <div>
 
-<button type="button" class="collapsible-button">Click to expand</button>
+<button type="button" class="collapsible-button">
+<div>Click to expand</div>
+<div class="text-center text-base" style="font-size:1.5rem;"> <i class="fa fa-angle-down" style="font-weight:600;"></i></div>
+</button>
 
 <div class="collapsible-content" markdown="1">
 
@@ -166,7 +169,10 @@ This data has 2-anonymity with respect to the attributes _Age_, _Gender_ and _St
 
 <div>
 
-<button type="button" class="collapsible-button">Click to expand</button>
+<button type="button" class="collapsible-button">
+<div>Click to expand</div>
+<div class="text-center text-base" style="font-size:1.5rem;"> <i class="fa fa-angle-down" style="font-weight:600;"></i></div>
+</button>
 
 <div class="collapsible-content" markdown="1">
 
@@ -226,7 +232,10 @@ better than a pre-defined threshold, whether the data from a customer contains t
 
 <div>
 
-<button type="button" class="collapsible-button">Click to expand</button>
+<button type="button" class="collapsible-button">
+<div>Click to expand</div>
+<div class="text-center text-base" style="font-size:1.5rem;"> <i class="fa fa-angle-down" style="font-weight:600;"></i></div>
+</button>
 
 <div class="collapsible-content" markdown="1">
 
@@ -291,7 +300,10 @@ become more susceptible to adversarial attacks as compared to records in more de
 
 <div>
 
-<button type="button" class="collapsible-button">Click to expand</button>
+<button type="button" class="collapsible-button">
+<div>Click to expand</div>
+<div class="text-center text-base" style="font-size:1.5rem;"> <i class="fa fa-angle-down" style="font-weight:600;"></i></div>
+</button>
 
 <div class="collapsible-content" markdown="1">
 
@@ -364,7 +376,10 @@ avoiding disclosure of sensitive information.
 
 <div>
 
-<button type="button" class="collapsible-button">Click to expand</button>
+<button type="button" class="collapsible-button">
+<div>Click to expand</div>
+<div class="text-center text-base" style="font-size:1.5rem;"> <i class="fa fa-angle-down" style="font-weight:600;"></i></div>
+</button>
 
 <div class="collapsible-content" markdown="1">
 

@@ -82,13 +82,18 @@
       coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
+        var textDiv = this.children[0];
+        var iconDiv = this.children[1];
+        var icon = iconDiv.querySelector('i');
         if (content.style.display === "block") {
           content.style.display = "none";
-          this.textContent = "Click to expand"; // Change button text
+          textDiv.textContent = 'Click to expand';
+          icon.className = 'fa fa-angle-down';
           // console.log("none");
         } else {
           content.style.display = "block";
-          this.textContent = "Click to fold"; // Change button text
+          textDiv.textContent = "Click to fold";
+          icon.className = 'fa fa-angle-up';
           // console.log("block");
         }
       });

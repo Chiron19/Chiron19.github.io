@@ -11,10 +11,10 @@ layout: default
       alt="author profile image">
     <h1 style="font-size:2.5em;" translate="no">{{site.author.name}}</h1>
     <div id="Japanese_Katakana_Name" style="display: none;">
-      <p style="font-size:1.25em; font-weight: 600; margin: 0em;">ソーン ジーオン</p>
+      <h1 style="font-size:1.25em; font-weight: 600; margin: 0em;" translate="no">ソーン ジーオン</h1>
     </div>
     <div id="Chinese_Hanji_Name" style="display: none;">
-      <p style="font-size:2.5em; font-weight: 800; margin-top: 0em;">宋 子洋</p>
+      <h1 style="font-size:2.5em; font-weight: 800; margin-top: 0em;"translate="no">宋 子洋</h1>
     </div>
   </div>
   {%- if site.author-bio -%}
@@ -28,7 +28,7 @@ layout: default
   {{content}}
 </div>
 
-<div id="observe_hanji" class="visually-hidden">China</div>
+<div id="observe_hanji" class="visually-hidden">Japan</div>
 <div id="observe_japan" class="visually-hidden">Hello</div>
 <style>
   .visually-hidden {
@@ -45,7 +45,7 @@ layout: default
 <script>
   document.addEventListener('DOMContentLoaded', function() {
   function isHanji() {
-    return document.getElementById('observe_hanji').textContent.includes("中");
+    return document.getElementById('observe_hanji').textContent.includes("日");
   }
 
   function isJapanese() {
