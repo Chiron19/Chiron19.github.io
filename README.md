@@ -5,6 +5,11 @@ Jekyll Based Github Pages: see tutorial on [Jekyll](https://jekyllrb.com). If al
 bundle exec jekyll serve
 ```
 
+Emerging [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).  Run with `mkdocs` installed:
+```
+mkdocs gh-deploy --force
+```
+
 Tailpages (Tailwind + Github Pages) is a Jekyll website template based on TailwindCSS, which can be hosted by Github for free. You can visit the demo site at [https://harrywang.me/](https://harrywang.me/).
 
 Key features are:

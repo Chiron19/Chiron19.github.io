@@ -8,6 +8,50 @@ permalink: PP_Optimization
 ---
 > This is the quick summary from literature review on reference: [Per-se Privacy Preserving Solution Methods Based on Optimization](https://terpconnect.umd.edu/~baras/publications/papers/2013/13-05%20P%20C%20Weeraddana.pdf), which is the summary of the contribution of paper [Per-se privacy preserving distributed optimization](http://arxiv.org/abs/1210.3283). Generaly, it summarized existed cryptography approaches and within the scope of non-cryptographic approaches, it developed a unified framework for privacy preserving solutions and give a general definition quantifying privacy with some examples.
 
+<div class="md-content md-typeset">
+<details class="example">
+<summary>Expand to show alternate icon sets</summary>
+<p>=== ":octicons-mark-github-16: Octicons"</p>
+<pre><code>``` yaml
+theme:
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+```
+</code></pre>
+<p>=== ":fontawesome-brands-font-awesome: FontAwesome"</p>
+<pre><code>``` yaml
+theme:
+  icon:
+    admonition:
+      note: fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/circle-info
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
+```
+</code></pre>
+</details>
+</div>
+
 # Introduction
 
 <div>

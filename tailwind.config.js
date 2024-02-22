@@ -41,6 +41,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@fontsource-variable/hanken-grotesk'),
+    require('@squidfunk/mkdocs-material'),
     // require('@fontsource/inclusive-sans'),
   ],
 
