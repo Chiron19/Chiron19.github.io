@@ -1,0 +1,91 @@
+<!-- https://stackoverflow.com/questions/29932644/looping-previous-and-next-post-in-jekyll -->
+<style>
+    #more-work {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding: 2em 1em 0;
+        max-width: 1000px;
+        color: black;
+    }
+    html[data-theme="dark"] #more-work {
+        color: white;
+    }
+    #more-work .left, #more-work .right {
+        flex: 1;
+        padding: 1em;
+        margin: 0;
+        transition: all 0.3s ease;
+        text-align: start;
+    }
+    #more-work .right {
+        text-align: end;
+    }
+    #more-work .left h6, #more-work .right h6 {
+        margin: 0;
+        padding: 0;
+        font-size: 0.8em;
+    }
+    #more-work .left h4, #more-work .right h4 {
+        margin: 0;
+        padding: 0;
+        font-size: 1.2em;
+    }
+    #more-work .left h4 a, #more-work .right h4 a {
+        text-decoration: none;
+    }
+    #more-work a:hover {
+        h4 {text-decoration: underline;}
+    }
+</style>
+
+<section id="more-work">
+    {% if page.previous %}
+        {% assign previous = page.previous %}
+		{% assign previous_href = site.baseurl | append: previous.url %}
+		{% assign previous_title = "Previous Post: " | append: previous.title %}
+		{% assign previous_indication = "← Previous Post" %}
+		{% assign previous_title_name = previous.title %}
+    {% else %}
+        <!-- {% assign previous = site.posts[0] %} -->
+		{% assign previous_href = "javascript:void(0)" %}
+		{% assign previous_title = "No Previous Post" %}
+		{% assign previous_indication = "|← No Previous Post" %}
+		{% assign previous_title_name = "" %}
+    {% endif %}
+    <div class="left">
+        <a class="equalize" href="{{previous_href}}" title="{{previous_title}}">
+            <div>
+                <h6> {{previous_indication}} </h6>
+                <h4> {{previous_title_name}} </h4>
+            </div>
+        </a>
+    </div>
+
+    {% if page.next %}
+        {% assign next = page.next %}
+		{% assign next_href = site.baseurl | append: next.url %}
+		{% assign next_title = "Next Post: " | append: next.title %}
+		{% assign next_indication = "Next Post →" %}
+		{% assign next_title_name = next.title %}
+    {% else %}
+        {%comment%}
+           As the array index start at zero we substract 1 to the total count,
+           we then get the last post index in the site.posts array
+        {%endcomment%}
+        <!-- {% assign last lastPostIndex = site.posts | size | minus: 1 %} -->
+        <!-- {% assign next = site.posts[lastPostIndex] %} --> 
+		{% assign next_href = "javascript:void(0)" %}
+		{% assign next_title = "No Next Post" %}
+		{% assign next_indication = "No Next Post →|" %}
+		{% assign next_title_name = "" %}
+    {% endif %}
+    <div class="right">
+        <a class="equalize" href="{{next_href}}" title="{{next_title}}">
+            <div>
+                <h6> {{next_indication}} </h6>
+                <h4> {{next_title_name}} </h4>
+            </div>
+        </a>
+    </div>
+</section>
