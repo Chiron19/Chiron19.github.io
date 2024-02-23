@@ -5,9 +5,15 @@ Jekyll Based Github Pages: see tutorial on [Jekyll](https://jekyllrb.com). If al
 bundle exec jekyll serve
 ```
 
-Emerging [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).  Run with `mkdocs` installed:
+Emerging [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Run with `mkdocs` installed:
 ```
-mkdocs gh-deploy --force
+mkdocs gh-deploy
+```
+Note that Material for MkDocs cannot be directly emerged with Jekyll, after building Mkdocs site, you need to copy the css style and html element manually to adapt to your original blog environment.
+1. Copy `mkdocs.min.css` file into directory `assets/css`, use css formatting tool to restore the format and delete relavant global style, only keeping the element styles.
+2. Adding includes into `_layouts/default.html`
+```html
+<link rel="stylesheet" href="{{site.baseurl}}/assets/css/mkdocs.min.css">
 ```
 
 Tailpages (Tailwind + Github Pages) is a Jekyll website template based on TailwindCSS, which can be hosted by Github for free. You can visit the demo site at [https://harrywang.me/](https://harrywang.me/).
