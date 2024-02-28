@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Liberation Mono';
+    src: url('../font/LiberationMono-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Liberation Mono';
+    src: url('../font/LiberationMono-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}

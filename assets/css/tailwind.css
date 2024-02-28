@@ -26,6 +26,10 @@
 /* For Noto Serif Hong Kong */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@400;500;600;700;800&display=swap');
 
+/* For Liberation Mono */
+@import url('./stylesheet.css');
+
+
 *,
 ::before,
 ::after {
@@ -142,7 +146,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: "Liberation Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -1239,7 +1243,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-prose-code: #DD1144;
   --tw-prose-code-bg: #f3f3f3;
   --tw-prose-pre-code: #1f2937;
-  --tw-prose-pre-bg: #e5e7eb;
+  --tw-prose-pre-bg: #f3f3f3;
   --tw-prose-th-borders: #d1d5db;
   --tw-prose-td-borders: #e5e7eb;
   --tw-prose-invert-body: #d1d5db;
