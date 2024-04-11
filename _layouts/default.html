@@ -34,6 +34,23 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   <script>
+    // Function to set Giscus theme based on the current theme
+    function changeGiscusTheme () {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ?  'dark' : 'light'
+  
+      function sendMessage(message) {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+  
+      sendMessage({
+        setConfig: {
+          theme: theme
+        }
+      });
+    }
+
     // Create a new MutationObserver instance
     var observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
@@ -45,12 +62,19 @@
           } else if (theme === 'dark') {
             highlightStyle.href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css";
           }
+
+          changeGiscusTheme();
         }
       });
     });
 
     // Start observing the documentElement for attribute changes
     observer.observe(document.documentElement, { attributes: true });
+
+    window.addEventListener('load', function(event) {
+      console.log(document.documentElement.getAttribute('data-theme'));
+      changeGiscusTheme();
+    });
   </script>
   <style>.hljs {background-color: transparent;}</style> <!-- Removing background color -->
   
@@ -141,5 +165,4 @@
         }
     }
 </script>
-
 </html>

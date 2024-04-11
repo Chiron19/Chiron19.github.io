@@ -35,4 +35,45 @@ layout: default
 
 {% include previous_and_next.html %}
 
+<!-- deprecated, moved to giscus -->
+<!-- 
+<script src="https://utteranc.es/client.js"
+        repo="Chiron19/Chiron19.github.io"
+        issue-term="pathname"
+        label="💬"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+-->
+<script src="https://giscus.app/client.js"
+        data-repo="Chiron19/Chiron19.github.io"
+        data-repo-id="R_kgDOIZXBsg"
+        data-category="General"
+        data-category-id="DIC_kwDOIZXBss4Cen5B"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+      // Find the Giscus script block
+      var giscusScript = document.querySelector('script[src="https://giscus.app/client.js"]');
+
+      // Check your condition to determine the theme
+      var theme = document.documentElement.getAttribute('data-theme') === 'dark' ?  'dark' : 'light'
+
+      // Update the data-theme attribute based on the condition
+      giscusScript.setAttribute('data-theme', theme);
+  });
+</script>
+
 {% include footer.html %}
