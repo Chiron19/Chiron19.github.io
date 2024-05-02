@@ -42,6 +42,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@fontsource-variable/hanken-grotesk'),
     require('@squidfunk/mkdocs-material'),
+    require('@camwiegert/typical'),
     // require('@fontsource/inclusive-sans'),
   ],
 

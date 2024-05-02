@@ -5,7 +5,32 @@ layout: default
   {% include nav.html%}
 {% endif %}
 
+<!-- TO FIX -->
+<script>
+  import { type, type as loop } from '@camwiegert/typical';
+
+  type(text_intro_target, 'Hello', 1000, 'Hello world!', 1000, loop);
+
+  console.log(text_intro_target);
+</script>
+<style>
+  .typical::after {
+    content: '|';
+    animation: blink 2s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  } 
+</style>
+
 <div class="mx-auto text-center prose prose-{{site.theme-color}}">
+  <div>
+    <img class="object-cover mx-auto w-1/2" src="/assets/img/kawaii.png" alt="kawaii logo image">
+    <div class="typical" id="text_intro_target" style=" margin: 0em;"><p style="font-size:3em; font-weight: 700;">Welcome to<br>Chiron's space!</p><p style="font-size:1.25em; font-weight: 500;">I'm a master student 🧑‍🎓/ developer 🧑‍💻/ creator 🧑‍🎨/ explorer 🙋,<br>Living in Stockholm Sweden 🇸🇪.</p></div>
+  </div>
   <div>
     <img class="object-cover mx-auto h-36 w-36 rounded-full" src="{{site.baseurl}}/assets/img/{{site.author.image}}"
       alt="author profile image">
@@ -79,4 +104,22 @@ layout: default
 
 
 {% include social-media.html %}
+
+<div style="display: flex; align-items: center;">
+<div class="mx-auto text-center px-4 prose prose-{{site.theme-color}} font-normal" style="display: flex; align-items: center;">
+  <div class="md-content md-typeset w-3/4">
+    <details class="question" markdown="1">
+    <summary>&emsp;More questions?&emsp;</summary>
+    
+I am so flattered that you have more interest on me. 😁<br>
+
+Please read my <a href="/about">About</a> page or keep my <a href="/assets/file/CV_Ziyang_Song_2024.pdf">CV</a>! 😎<br>
+
+Don't hesitate to contact me if you have any questions and let's keep in touch! 🤝
+    
+    </details>
+  </div>
+</div>
+</div>
+
 {% include footer.html %}
