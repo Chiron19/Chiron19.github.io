@@ -6,13 +6,7 @@ layout: default
 {% endif %}
 
 <!-- TO FIX -->
-<script>
-  import { type, type as loop } from '@camwiegert/typical';
 
-  type(text_intro_target, 'Hello', 1000, 'Hello world!', 1000, loop);
-
-  console.log(text_intro_target);
-</script>
 <style>
   .typical::after {
     content: '|';
@@ -29,7 +23,150 @@ layout: default
 <div class="mx-auto text-center prose prose-{{site.theme-color}}">
   <div>
     <img class="object-cover mx-auto w-1/2" src="/assets/img/kawaii.png" alt="kawaii logo image">
-    <div class="typical" id="text_intro_target" style=" margin: 0em;"><p style="font-size:3em; font-weight: 700;">Welcome to<br>Chiron's space!</p><p style="font-size:1.25em; font-weight: 500;">I'm a master student 🧑‍🎓/ developer 🧑‍💻/ creator 🧑‍🎨/ explorer 🙋,<br>Living in Stockholm Sweden 🇸🇪.</p></div>
+    <div><p style="font-size:3em; font-weight: 700;">Welcome to<br>Chiron's space!</p><p style="font-size:1.25em; font-weight: 500;">I'm a master student 🧑‍🎓/ developer 🧑‍💻/ creator 🧑‍🎨/ explorer 🙋,<br>Living in Stockholm Sweden 🇸🇪.</p></div>
+    <div class="typical" id="text_intro_target" style=" margin: 0em;"></div>
+    <script src="/assets/js/typical.js" type="module" >
+import test from 'tape';
+
+import {
+    deleter,
+    editor,
+    getOverlap,
+    writer
+} from '/assets/js/typical.js';
+
+test('deleter', t => {
+    t.ok(
+        deleter('text')[Symbol.iterator],
+        'Should create an iterable'
+    );
+
+    t.deepEqual(
+        [...deleter('text')],
+        ['tex', 'te', 't', ''],
+        'Should create correct steps'
+    );
+
+    t.deepEqual(
+        [...deleter('')],
+        [],
+        'Should handle empty string'
+    );
+
+    t.deepEqual(
+        [...deleter('text', 2)],
+        ['tex', 'te'],
+        'Should handle startIndex'
+    );
+
+    t.deepEqual(
+        [...deleter('text', 0, 2)],
+        ['t', ''],
+        'Should handle endIndex'
+    );
+
+    t.deepEqual(
+        [...deleter('🍕')],
+        [''],
+        'Should handle emoji'
+    );
+
+    t.end();
+});
+
+test('editor', t => {
+    t.ok(
+        editor(deleter('text'))[Symbol.iterator],
+        'Should create an iterable'
+    );
+
+    t.equal(
+        [...editor(writer('text'))].length, 4,
+        'Should have correct length'
+    );
+
+    t.equal(
+        typeof editor(deleter('text')).next().value,
+        'function',
+        'Should yield functions'
+    );
+
+    t.end();
+});
+
+test('getOverlap', t => {
+    t.equal(
+        getOverlap('some text', 'some other text'), 5,
+        'Should handle partial overlap'
+    );
+
+    t.equal(
+        getOverlap('some text', 'other text'), 0,
+        'Should handle no overlap'
+    );
+
+    t.equal(
+        getOverlap('some text', 'some text'), 9,
+        'Should handle complete overlap'
+    );
+
+    t.equal(
+        getOverlap('some text', 'some text and'), 9,
+        'Should handle write only'
+    );
+
+    t.equal(
+        getOverlap('some text', 'some'), 4,
+        'Should handle delete only'
+    );
+
+    t.equal(
+        getOverlap('emoji 🐡', 'emoji 🐡 blowfish'), 7,
+        'Should handle emoji'
+    );
+
+    t.end();
+});
+
+test('writer', t => {
+    t.ok(
+        writer('text')[Symbol.iterator],
+        'Should create an iterable'
+    );
+
+    t.deepEqual(
+        [...writer('text')],
+        ['t', 'te', 'tex', 'text'],
+        'Should create correct steps'
+    );
+
+    t.deepEqual(
+        [...writer('')],
+        [],
+        'Should handle empty string'
+    );
+
+    t.deepEqual(
+        [...writer('text', 2)],
+        ['tex', 'text'],
+        'Should handle startIndex'
+    );
+
+    t.deepEqual(
+        [...writer('text', 0, 2)],
+        ['t', 'te'],
+        'Should handle endIndex'
+    );
+
+    t.deepEqual(
+        [...writer('📚')],
+        ['📚'],
+        'Should handle emoji'
+    );
+
+    t.end();
+});
+    </script>
   </div>
   <div>
     <img class="object-cover mx-auto h-36 w-36 rounded-full" src="{{site.baseurl}}/assets/img/{{site.author.image}}"
