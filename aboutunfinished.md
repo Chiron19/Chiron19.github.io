@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: about
+permalink: unfinished
 ---
 > <b>Summary</b>
 > I have a solid foundation in networked systems, and communication engineering with both hardware and software experiences. I am interested in privacy preservation, cryptography, intelligent algorithms and networked security topics.
