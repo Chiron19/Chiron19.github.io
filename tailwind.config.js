@@ -43,6 +43,7 @@ module.exports = {
     require('@fontsource-variable/hanken-grotesk'),
     require('@squidfunk/mkdocs-material'),
     require('@camwiegert/typical'),
+    require('@lottielab/lottie-player'),
     require('daisyui'),
     // require('@fontsource/inclusive-sans'),
   ],

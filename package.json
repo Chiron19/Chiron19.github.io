@@ -18,6 +18,8 @@
     "@fontsource-variable/hanken-grotesk": "^5.0.19",
     "@fontsource/inclusive-sans": "^5.0.1",
     "@fontsource/inter": "^5.0.16",
+    "@lottielab/lottie-player": "^1.1.2",
+    "lottie-web": "^5.12.2",
     "sass": "^1.69.7"
   }
 }

@@ -64,16 +64,25 @@ layout: default
 </script>
 
 <script>
-  window.addEventListener('DOMContentLoaded', function() {
+  function updateGiscusTheme() {
       // Find the Giscus script block
       var giscusScript = document.querySelector('script[src="https://giscus.app/client.js"]');
 
       // Check your condition to determine the theme
-      var theme = document.documentElement.getAttribute('data-theme') === 'dark' ?  'dark' : 'light'
+      var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
 
       // Update the data-theme attribute based on the condition
       giscusScript.setAttribute('data-theme', theme);
+  }
+
+  window.addEventListener('DOMContentLoaded', updateGiscusTheme);
+  window.addEventListener('pageshow', function() {
+    setTimeout(updateGiscusTheme, 0); // Delay to ensure the theme is updated
   });
+  
+  if (giscusScript.getAttribute('data-theme') === 'preferred_color_scheme') {
+    updateGiscusTheme();
+  }
 </script>
 
 {% include footer.html %}
