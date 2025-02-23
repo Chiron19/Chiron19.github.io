@@ -4,6 +4,10 @@ Jekyll Based Github Pages: see tutorial on [Jekyll](https://jekyllrb.com). If al
 ```
 bundle exec jekyll serve
 ```
+Pass the  `--livereload` option to serve to automatically refresh the page with each change you make to the source files: 
+```
+bundle exec jekyll serve --livereload
+```
 
 Emerging [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Run with `mkdocs` installed:
 ```

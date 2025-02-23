@@ -42,7 +42,7 @@ rss: ./feed.xml
 
 # footer information
 footer-msg: "Powered by Tailpages"
-footer-msg-link: https://github.com/harrywang/tailpages
+footer-msg-link: https://github.com/Chiron19/Chiron19.github.io
 
 # google analytics
 google-analytics: G-WCRC1TC2V5

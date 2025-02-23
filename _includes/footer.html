@@ -16,7 +16,7 @@
   <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
     <div class="text-sm text-gray-300 font-light">
-      © 2023 - <span id="get-current-year"></span> Chiron19
+      © 2023 - <span id="get-current-year"></span> Chiron19<br>
       {% if site.footer-msg %}
       <a href="{{site.footer-msg-link}}" class="!no-underline">
         {{site.footer-msg}}
@@ -25,5 +25,25 @@
     </div>
   </div>
   </div>
+
+  {% if page.home %}
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300 font-light">
+      <span>Color Block imported from </span>
+      <a href="https://squidfunk.github.io/mkdocs-material/" class="!no-underline">
+        MkDocs Material
+      </a><br>
+      <span>Motion Logo design made in </span>
+      <a href="https://www.lottielab.com/" class="!no-underline">
+        © LottieLab
+      </a><br>
+      <span>Typewriter Module by </span>   
+      <a href="https://github.com/camwiegert/typical/" class="!no-underline">
+        @ camwiegert/typical
+      </a>
+    </div>
+  </div>
+  </div>
+  {% endif %}
 
 </footer>

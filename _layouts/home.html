@@ -5,18 +5,21 @@ layout: default
   {% include nav.html%}
 {% endif %}
 
-<!-- TO FIX -->
+<!-- Typewriter effect module import -->
+<script type="module" src="{{site.baseurl}}/assets/js/script.js"></script>
 
 <div class="mx-auto text-center prose prose-{{site.theme-color}}">
     <!-- <img class="object-cover mx-auto w-1/2" src="/assets/img/kawaii.png" alt="kawaii logo image"> -->
     <div onmouseover="chiron_lottie.play()" onmouseout="chiron_lottie.stop()">
       <lottie-player id="chiron_lottie" class="object-cover mx-auto w-1/2" src="/assets/images/chiron.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
     </div>
-    <div>
+  <div class="flex flex-wrap items-center justify-center" style="flex-direction: column;">
       <p style="font-size:3em; font-weight: 700;">Welcome to<br>Chiron's space!</p>
-      <p style="font-size:1.25em; font-weight: 500;">I'm a master student 🧑‍🎓/ developer 🧑‍💻/ creator 🧑‍🎨/ explorer 🙋,<br>Living in Stockholm Sweden 🇸🇪.</p></div>
-    <div class="typical" id="text_intro_target" style=" margin: 0em;"></div>
+      <!-- Typewriter effect -->
+      <div id="text_intro_target" style="width: 260px; font-size:1.25em; font-weight: 500; display: flex; flex-direction: row;align-content: flex-start;justify-content: flex-start;"></div>
+      <p style="margin-top: 0; font-size:1.25em; font-weight: 500;">Living in Stockholm Sweden 🇸🇪.</p>
   </div>
+</div>
   <div class="mx-auto text-center prose prose-{{site.theme-color}}">
     <img class="object-cover mx-auto h-36 w-36 rounded-full" src="{{site.baseurl}}/assets/img/{{site.author.image}}"
       alt="author profile image">
@@ -98,6 +101,8 @@ layout: default
     <summary>&emsp;More questions?&emsp;</summary>
     
 I am so flattered that you have more interest on me. 😁<br>
+
+I am currently open to PhD positions. 😊<br>
 
 Please read my <a href="/about">About</a> page or keep my <a href="/assets/file/CV_Ziyang_Song_2025.pdf">CV</a>! 😎<br>
 
