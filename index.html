@@ -1,0 +1,192 @@
+---
+layout: default
+title: Home
+permalink: /
+home: true
+---
+{%- if site.show-nav-menu -%}
+    {% include nav.html %}
+{%- endif -%}
+
+<!-- Matrix Rain background Switch-on -->
+<label class="toggle-matrix-label">
+    <input type="checkbox" id="toggleMatrixCheckbox" onchange="toggleMatrixBackground()" style="display:none;"/>
+    <span class="toggle-matrix"></span>
+</label>
+
+<script>
+    function toggleMatrixBackground() {
+        const canvas = document.getElementById('matrixbackground');
+        const checkbox = document.getElementById('toggleMatrixCheckbox');
+        if (checkbox.checked) {
+            canvas.style.zIndex = '-1';
+        } else {
+            canvas.style.zIndex = '-2';
+        }
+    }
+</script>
+
+<!-- Matrix Rain module import -->
+<meta charset="utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/libs/matrix/js/main.js';
+        document.body.appendChild(script);
+    });
+</script>
+
+<!-- Set Original background -->
+<canvas id="backgroundCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+<script>
+    const canvas = document.getElementById('backgroundCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function drawBackground() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const isDarkMode = document.documentElement.dataset.theme === 'dark';
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        if (isDarkMode) {
+            gradient.addColorStop(0, '#1e293b'); // Dark blue-gray
+            gradient.addColorStop(1, '#111111'); // Dark
+        } else {
+            gradient.addColorStop(0, '#e0e9ef'); // Light blue-gray
+            gradient.addColorStop(1, '#ffffff'); // White
+        }
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        drawBackground();
+    });
+
+    var observer = new MutationObserver(() => {
+        drawBackground();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    window.addEventListener('load', () => {
+        resizeCanvas();
+        drawBackground();
+    });
+</script>
+
+
+<!-- Typewriter effect module import -->
+<script type="module" src="/assets/js/script.js"></script>
+
+<div class="mx-auto text-center prose prose-{{site.theme-color}}">
+    <!-- <img class="object-cover mx-auto w-1/2" src="/assets/img/kawaii.png" alt="kawaii logo image"> -->
+    <div onmouseover="chiron_lottie.play()" onmouseout="chiron_lottie.stop()">
+        <lottie-player id="chiron_lottie" class="object-cover mx-auto w-1/2" src="/assets/images/chiron.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
+    </div>
+    <div class="flex flex-wrap items-center justify-center" style="flex-direction: column;">
+        <p style="font-size:3em; font-weight: 700; line-height: 1.2;">Welcome to<br>Chiron's space!</p>
+        <!-- Typewriter effect -->
+        <div id="text_intro_target" style="width: 260px; font-size:1.25em; font-weight: 500; display: flex; flex-direction: row;align-content: flex-start;justify-content: flex-start;">I'm a </div>
+        <p style="margin-top: 0; font-size:1.25em; font-weight: 500;">Living in Stockholm Sweden 🇸🇪.</p>
+    </div>
+</div>
+
+<div class="mx-auto text-center prose prose-{{site.theme-color}}">
+    <img class="object-cover mx-auto h-36 w-36 rounded-full" src="{{site.baseurl}}/assets/img/{{site.author.image}}" alt="author profile image">
+    <h1 style="font-size:2.5em;" translate="no">{{site.author.name}}</h1>
+    <div id="Japanese_Katakana_Name" style="display: none;">
+        <h1 style="font-size:1.25em; font-weight: 600; margin: 0em;" translate="no">ソーン ジーオン</h1>
+    </div>
+    <div id="Chinese_Hanji_Name" style="display: none;">
+        <h1 style="font-size:2.5em; font-weight: 800; margin-top: 0em;"translate="no">宋 子洋</h1>
+    </div>
+</div>
+
+{%- if site.author-bio -%}
+<div class="mx-auto text-center w-4/5 prose prose-{{site.theme-color}}">
+    <p class="--tw-prose-body font-light">{{site.author-bio}}</p>
+</div>
+{%- endif -%}
+
+<div class="text-center px-4 prose prose-{{site.theme-color}} font-normal">
+    Master's student in Information and Network <span style="white-space: no-wrap;">Engineering (EECS, KTH)</span><br>
+    Master thesis project: <i>Privacy-Preserving Machine Learning with Homomorphic Encryption among Multi-Parties</i>
+</div>
+
+<!-- Informal method ensuring JPN/CHN translation of my name -->
+<div id="observe_hanji" class="visually-hidden">Japan</div>
+<div id="observe_japan" class="visually-hidden">Hello</div>
+<style>
+    .visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function isHanji() {
+        return document.getElementById('observe_hanji').textContent.includes("日");
+        }
+
+        function isJapanese() {
+        return document.getElementById('observe_japan').textContent.includes("こ");
+        }
+
+        // Create a MutationObserver instance
+        var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (isHanji()) {
+                document.getElementById('Chinese_Hanji_Name').style.display = 'block';
+            } else {
+                document.getElementById('Chinese_Hanji_Name').style.display = 'none';
+            }
+            if (isJapanese()) {
+                document.getElementById('Japanese_Katakana_Name').style.display = 'block';
+            } else {
+                document.getElementById('Japanese_Katakana_Name').style.display = 'none';
+            }
+            }
+        );
+        });
+
+        // Get the target node
+        var targetNode = document.getElementById('observe_hanji');
+
+        // Start observing the target node for changes in its child nodes
+        observer.observe(targetNode, { childList: true, subtree: true, characterData: true });
+    });
+</script>
+
+
+{% include social-media.html %}
+
+<div style="display: flex; align-items: center;">
+    <div class="mx-auto text-center px-4 prose prose-{{site.theme-color}} font-normal" style="display: flex; align-items: center;">
+        <div class="md-content md-typeset w-3/4">
+            <details class="question" markdown="1">
+            <summary>&emsp;More questions?&emsp;</summary>
+    I am so flattered that you have more interest on me. 😁<br>
+    I am currently open to PhD positions. 😊<br>
+    Please read my <a href="/about">About</a> page or keep my <a href="/assets/file/CV_Ziyang_Song_2025_Summer.pdf">CV</a>! 😎<br>
+    Don't hesitate to contact me if you have any questions and let's keep in touch! 🤝
+            </details>
+        </div>
+    </div>
+</div>
+
+{% include footer.html %}

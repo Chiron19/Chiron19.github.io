@@ -1394,6 +1394,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+  font-weight: 600 !important;
 }
 
 .hover\:text-white:hover {
@@ -1494,6 +1495,53 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:py-1 {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+  }
+}
+
+/* for matrix background checked button */
+.toggle-matrix-label {
+  & .toggle-matrix {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    background-color: #1f1f1f;
+    border: 2px transparent;
+    border-radius: 2rem;
+    color: #0099ff;
+    padding: 0.8rem;
+    font-size: 16px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #0099ff, 0 0 10px #0099ff;
+    transition: box-shadow 0.3s ease, background-color 0.5s ease, background-size 0.5s ease;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, #0099ff 200%);
+    background-size: 200%;
+    background-position: center;
+  }
+
+  & .toggle-matrix:hover {
+    background: radial-gradient(circle at 50% 50%, #0099ff 0%, transparent 200%);
+    border: 2px solid #0055ff;
+    box-shadow: 0 0 20px #0099ff;
+    background-position: center;
+    background-size: 100%;
+  }
+
+  & input:checked ~ .toggle-matrix {
+    background-color: #1f1f1f;
+    border: 2px transparent;
+    color: #ff2200;
+    text-shadow: 0 0 5px #ff2200, 0 0 10px #ff2200;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, #ff2200 200%);
+    background-size: 200%;
+    background-position: center;
+  }
+
+  & input:checked ~ .toggle-matrix:hover {
+    background: radial-gradient(circle at 50% 50%, #ff2200 0%, transparent 200%);
+    border: 2px solid #ff0011;
+    box-shadow: 0 0 20px #ff2200;
+    background-position: center;
+    background-size: 100%;
   }
 }
 
@@ -1658,6 +1706,7 @@ html[data-theme="dark"] {
   }
   .hover\:text-gray-900:hover {
     color: #f3f4f6;
+    font-weight: 600 !important;
   }
 }
 
