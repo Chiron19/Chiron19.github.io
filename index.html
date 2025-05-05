@@ -28,9 +28,9 @@ home: true
 
 <!-- Matrix Rain module import -->
 <meta charset="utf-8" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" /> -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const script = document.createElement('script');
@@ -41,7 +41,7 @@ home: true
 </script>
 
 <!-- Set Original background -->
-<canvas id="backgroundCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
+<canvas id="backgroundCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;"></canvas>
 <script>
     const canvas = document.getElementById('backgroundCanvas');
     const ctx = canvas.getContext('2d');
