@@ -20,24 +20,11 @@ home: true
         const checkbox = document.getElementById('toggleMatrixCheckbox');
         if (checkbox.checked) {
             canvas.style.zIndex = '-1';
+            canvas.style.pointerEvents = 'none'; // Disable pointer events to allow interaction with other elements
         } else {
             canvas.style.zIndex = '-2';
         }
     }
-</script>
-
-<!-- Matrix Rain module import -->
-<meta charset="utf-8" />
-<!-- <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" /> -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.src = '/libs/matrix/js/main.js';
-        document.body.appendChild(script);
-    });
 </script>
 
 <!-- Set Original background -->
@@ -81,6 +68,60 @@ home: true
         resizeCanvas();
         drawBackground();
     });
+</script>
+
+<!-- Matrix Rain module import -->
+<meta charset="utf-8" />
+<!-- <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" /> -->
+<script type="module">
+    import { reload } from '/libs/matrix/js/main.js'; // Import reload function
+
+    function lightmodeObject() {
+        var version = "palimpsest";
+        var effect = "stripes";
+        var stripeColors = [
+            { space: "rgb", values: [0, 0.81, 0.18] },
+            { space: "rgb", values: [0.06, 0.66, 0.12] },
+            { space: "rgb", values: [0.03, 0.36, 0.5] },
+            { space: "rgb", values: [0.06, 0.66, 0.72] },
+            { space: "rgb", values: [0.07, 0.31, 0.65] },
+        ];
+        var backgroundColor = { space: "rgb", values: [0, 0, 0.01] };
+        var cursorColor = { space: "hsl", values: [0.142, 1, 0.73] };
+        return window.matrixRainConfig = {version, effect, stripeColors, backgroundColor, cursorColor};
+    };
+    function darkmodeObject() {
+        var version = "plain";
+        var effect = "pride";
+        var backgroundColor = { space: "rgb", values: [0, 0.1, 0] };
+        var cursorColor = { space: "hsl", values: [0.142, 1, 0.73] };
+        return window.matrixRainConfig = {version, effect, backgroundColor, cursorColor};
+    };
+
+    lightmodeObject();
+
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = '/libs/matrix/js/main.js';
+    document.body.appendChild(script);
+
+    var observer = new MutationObserver(() => {
+        const isDarkMode = document.documentElement.dataset.theme === 'dark';
+        const canvas = document.getElementById('matrixbackground');
+        if (isDarkMode) {
+            darkmodeObject();
+            canvas.style.filter = 'invert(0%)';
+        } else {
+            lightmodeObject();
+            canvas.style.filter = 'invert(100%)';
+        }
+        // reload(); 
+        // OBS! The logic is broken. In fact, only the color filter is toggled, without a whole reload!
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
 </script>
 
 
