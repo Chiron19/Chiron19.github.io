@@ -107,6 +107,13 @@ home: true
     script.src = '/libs/matrix/js/main.js';
     document.body.appendChild(script);
 
+    const isDarkMode = document.documentElement.dataset.theme === 'dark';
+    if (isDarkMode) {
+        document.getElementById('matrixbackground').style.filter = 'invert(0%)';
+    } else {
+        document.getElementById('matrixbackground').style.filter = 'invert(100%)';
+    }
+
     var observer = new MutationObserver(() => {
         const isDarkMode = document.documentElement.dataset.theme === 'dark';
         const canvas = document.getElementById('matrixbackground');
@@ -165,7 +172,7 @@ home: true
 
 <!-- Informal method ensuring JPN/CHN translation of my name -->
 <div id="observe_hanji" class="visually-hidden">Japan</div>
-<div id="observe_japan" class="visually-hidden">Hello</div>
+<div id="observe_japan" class="visually-hidden">Sweden</div>
 <style>
     .visually-hidden {
     position: absolute !important;
@@ -181,11 +188,11 @@ home: true
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         function isHanji() {
-        return document.getElementById('observe_hanji').textContent.includes("日");
+            return document.getElementById('observe_hanji').textContent.includes("日");
         }
 
         function isJapanese() {
-        return document.getElementById('observe_japan').textContent.includes("こ");
+            return document.getElementById('observe_japan').textContent.includes("ス");
         }
 
         // Create a MutationObserver instance
