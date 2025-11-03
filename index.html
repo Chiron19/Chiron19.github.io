@@ -136,10 +136,34 @@ home: true
 <script type="module" src="/assets/js/script.js"></script>
 
 <div class="mx-auto text-center prose prose-{{site.theme-color}}">
-    <!-- <img class="object-cover mx-auto w-1/2" src="/assets/img/kawaii.png" alt="kawaii logo image"> -->
-    <div onmouseover="chiron_lottie.play()" onmouseout="chiron_lottie.stop()">
-        <lottie-player id="chiron_lottie" class="object-cover mx-auto w-1/2" src="/assets/images/chiron.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
+    <!-- Lottie Animation -->
+    <div id="chiron_light_container" onmouseover="chiron_lottie.play()" onmouseout="chiron_lottie.stop()">
+        <lottie-player id="chiron_lottie" class="object-cover mx-auto w-1/2" style="height: fit-content;" src="/assets/images/chiron.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
     </div>
+    <div id="chiron_dark_container" onmouseover="chiron_dark_lottie.play()" onmouseout="chiron_dark_lottie.stop()">
+        <lottie-player id="chiron_dark_lottie" class="object-cover mx-auto" style="align-items: center; width: 70%; height: fit-content;" src="/assets/images/chiron_dark.json" background="transparent" speed="0.8" loop autoplay></lottie-player>
+    </div>
+
+    <script>
+    (function() {
+        const lightContainer = document.getElementById('chiron_light_container');
+        const darkContainer = document.getElementById('chiron_dark_container');
+
+        function updateVisibility() {
+            const isDarkMode = document.documentElement.dataset.theme === 'dark';
+            lightContainer.style.display = isDarkMode ? 'none' : 'block';
+            darkContainer.style.display = isDarkMode ? 'block' : 'none';
+        }
+
+        // Initial choice
+        updateVisibility();
+
+        // Observe theme changes
+        const observer = new MutationObserver(updateVisibility);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    })();
+    </script>
+
     <div class="flex flex-wrap items-center justify-center" style="flex-direction: column;">
         <p style="font-size:3em; font-weight: 700; line-height: 1.2;">Welcome to<br>Chiron's space!</p>
         <!-- Typewriter effect -->
