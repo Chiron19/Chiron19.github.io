@@ -13,7 +13,7 @@ theme-color: indigo # indigo|yellow|pink|green|stone|
 author: 
   name: Ziyang Song
   image: head.jpeg  # file must be in the /assets/img/ folder
-author-bio: The first and best victory is to conquer self.<br><i>—Plato</i>
+author-bio: First making some cookies, then becoming a baker.<br>
 # Master's student in Information and Network <span style="white-space: no-wrap;">Engineering (EECS, KTH),</span><br>Ongoing master thesis project "<i>A New Privacy-Federated Learning Framework for Simulating User Interactions</i>" # change to false to hide
 image: ./assets/img/head.jpeg
 
