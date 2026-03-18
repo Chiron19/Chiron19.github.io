@@ -22,8 +22,6 @@ image: ./assets/img/head.jpeg
 show-nav-menu: true
 
 nav-menu:
-- text: About
-  permalink: about
 - text: Blog
   permalink: blog
 - text: Workspace

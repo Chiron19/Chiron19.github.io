@@ -1,7 +1,5 @@
 ---
 layout: page
-title: About
-permalink: about
 ---
 <!-- include click-to-top -->
 {% include extensions/click-to-top.html %}

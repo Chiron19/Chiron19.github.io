@@ -167,7 +167,7 @@ home: true
     <div class="flex flex-wrap items-center justify-center" style="flex-direction: column;">
         <p style="font-size:3em; font-weight: 700; line-height: 1.2;">Welcome to<br>Chiron's space!</p>
         <!-- Typewriter effect, "/assets/js/script.js" -->
-        <div id="text_intro_target" style="width: 260px; font-size:1.25em; font-weight: 500; display: flex; flex-direction: row;align-content: flex-start;justify-content: flex-start;">I'm a </div>
+        <div id="text_intro_target" style="width: fit-content; font-size:1.25em; font-weight: 500; display: flex; flex-direction: row;align-content: flex-start;justify-content: flex-start;">I'm a </div>
         <p style="margin-top: 0; font-size:1.25em; font-weight: 500;">Living in Germany 🇩🇪.</p>
     </div>
 </div>
@@ -185,14 +185,183 @@ home: true
 
 {%- if site.author-bio -%}
 <div class="mx-auto text-center w-4/5 prose prose-{{site.theme-color}}">
+  <p class="--tw-prose-lead font-light">&ldquo;</p>
     <p class="--tw-prose-body font-light">{{site.author-bio}}</p>
+  <p class="--tw-prose-lead font-light">&rdquo;</p>
 </div>
 {%- endif -%}
 
+<blockquote>
 <div class="text-center px-4 prose prose-{{site.theme-color}} font-normal">
-    I'm starting my PhD at Ruhr University Bochum! <span style="white-space: no-wrap;"></span><br>
+<p>I'm starting my PhD at Ruhr University Bochum! <span style="white-space: no-wrap;"></span><br>
     Current Project: <i>IGEL-AI (“IntelliGEnte Lösungen für Echtzeit-Sicherheit”)</i> for security of future mobile networks<br>
-    Specialization: <i>System Security</i>
+    Specialization: <i>System Security</i></p>
+
+<p>I have a solid foundation in networked systems, and communication engineering with both hardware and software experiences. I am interested in privacy preservation, applied cryptography, intelligent algorithms and networked security topics.</p>
+
+<p>Driven by a fervent passion for continuous learning and real-world applications, I am ready to work with challenges and learn more to address problems, in a team or individually.</p>
+
+<p>Thank you for visiting my website.</p>
+</div>
+</blockquote>
+
+<div class="prose prose-{{site.theme-color}} font-normal">
+<h3 id="education">Experience</h3>
+<details class="notation" open>
+<summary></summary>
+
+<div class="prose prose-{{site.theme-color}} font-normal" style="display: flex; margin-bottom: 1em; align-items: flex-start; ">
+  <div style="flex-shrink: 0;"><a href="https://www.rub.de"><img style="width: 50px; left: var(--margin);" src="./assets/images/rub_logo.png" /></a></div>
+
+  <div style="display: flex; flex-direction: column; margin-left: 1em;">
+    <h4 id="rub-ruhr-university-bochum">Ruhr University Bochum</h4>
+    <p>[Jan. 2026 - Mar. 2026] Bochum, Germany<br />
+    Dotoral Candidate Intern at System Security Group: working on 5G mobile network simulation on OMNeT++, with focusing control plane security aspects<br /></p>
+  </div>
+
+</div>
+
+<div class="prose prose-{{site.theme-color}} font-normal" style="display: flex; margin-bottom: 1em; align-items: flex-start;">
+<div style="flex-shrink: 0;"><a href="https://www.kth.se"><img style="width: 50px; left: var(--margin);" src="./assets/images/KTH_Logotyp_RGB_2013-2.svg" /></a></div>
+
+<div style="display: flex; flex-direction: column; margin-left: 1em;">
+<h4 id="kth-royal-institute-of-technology">KTH Royal Institute of Technology</h4>
+<p style="margin-bottom: 0em;">[Aug. 2022 - Jan. 2025] Stockholm, Sweden<br />
+M.Sc. Information and Network Engineering (2.5 years) GPA 4.6/5.0:<br /></p>
+
+<p style="margin-top: 0.25em; margin-bottom: 0.25em;">Track: Networked Systems (master level courses including: Internetworking, Signal Theory, Networked System Security,
+Digital Communication, Queuing Theory &amp; Teletraffic Systems, Wireless
+Networks, SDN &amp; NFV)</p>
+
+<p style="margin-top: 0em; margin-bottom: 0em;">Degree Project: Privacy-preserving Machine Learning with Homomorphic Encryption among Multi-parties (CKKS, Python &amp; C++) <em>[Awarded Scholarship ISSLS2000]</em> <a href="https://kth.diva-portal.org/smash/record.jsf?pid=diva2:1947274">More Info</a> </p>
+
+</div>
+</div>
+
+
+<div class="prose prose-{{site.theme-color}} font-normal" style="display: flex; margin-bottom: 1em; align-items: flex-start;">
+  <div style="flex-shrink: 0;"><a href="https://www.epfl.ch"><img style="width: 50px; left: var(--margin);" src="./assets/images/epfl-logo.svg" /></a></div>
+
+  <div style="display: flex; flex-direction: column; margin-left: 1em;">
+    <h4 id="epfl">EPFL</h4>
+    <p style="margin-bottom: 0em;">[Aug. 2023 - Feb. 2024] Lausanne, Switzerland<br />
+      Exchange Semester (Autumn), Computer Science <br /></p>
+
+  <p style="margin-top: 0.25em; margin-bottom: 0.25em;">Technical Courses: Machine Learning, Distributed Computing, Concurrent
+Algorithms, Intelligent Agents</p>
+
+  <p style="margin-top: 0em; margin-bottom: 0em;">Semester Project: Simple Network Emulator <a href="https://github.com/Chiron19/SimpleEM">View Details on Github</a></p>
+  </div>
+</div>
+
+<div class="prose prose-{{site.theme-color}} font-normal" style="display: flex; margin-bottom: 1em; align-items: flex-start;">
+  <div style="flex-shrink: 0;"><a href="https://www.hitsz.edu.cn"><img style="width: 50px; left: var(--margin);" src="./assets/images/hit_logo_blue.svg" /></a></div>
+
+  <div style="display: flex; flex-direction: column; margin-left: 1em;">
+<h4 id="harbin-institute-of-technology-shenzhen">Harbin Institute of Technology, Shenzhen</h4>
+  <p style="margin-top: 0em; margin-bottom: 0em;">[Aug. 2019 - Jun. 2023] Shenzhen, China<br />
+  B.Eng. Electrical and Information Engineering (3+1 years) GPA 88.5/100<br /></p>
+
+  <p style="margin-top: 0.25em; margin-bottom: 0.25em;">Technical Courses: Image Processing, Information Theory, Mobile
+Communication, Digital Signal Processing, Image Processing, Biomedical
+Electronics, Electromagnetic Theory, Complex Variable Functions, Differential
+Equations, Convex Optimizations, etc.</p>
+
+  <p style="margin-top: 0em; margin-bottom: 0em;">Base Courses: Calculus, Linear Algebra &amp; Geometry, Probabilities &amp; Statistics,
+Signals &amp; Systems, Computer Theory, Electronic Circuits, Physics, Simulations</p>
+
+  </div>
+</div>
+
+<div class="prose prose-{{site.theme-color}} font-normal" style="display: flex; margin-bottom: 1em; align-items: flex-start;">
+  <div style="flex-shrink: 0;"><a href="http://gdsyzx.edu.cn"><img style="width: 50px; left: var(--margin);" src="./assets/images/Guangdong_Experimental_High_School_Logo.png" /></a></div>
+
+  <div style="display: flex; flex-direction: column; margin-left: 1em;">
+    <h4 id="guangdong-experimental-high-school">Guangdong Experimental High School</h4>
+    <p style="margin-top: 0em; margin-bottom: 0em;">[Aug. 2016 - Jun. 2019] Guangzhou, China<br />
+  High School (3 years), with CEE 632/750 (Science Track)<br /></p>
+  </div>
+
+</div>
+</details>
+
+
+<h3 id="projects">Projects</h3>
+<details class="notation" open>
+<summary></summary>
+
+  <h4 id="simple-network-emulator">Simple Network Emulator</h4>
+  <p>[Jun. 2023 - Jan. 2024] Semester Project<br /></p>
+<ul>
+  <li>Emulator in Linux. Programmed in C++, it provides a plug-and-play testing network and allows users to configure multiple distributed processes with different pseudo IP and port and arbitrary delay matrix and connectivity. It inherited from the UDP structure and is added TCP support. <a href="">More »</a></li>
+</ul>
+
+
+  <h4 id="software-defined-networking--network-function-virtualization">Software-Defined Networking &amp; Network Function Virtualization</h4>
+  <p>[Apr. 2024 - Jun. 2024] Course Project<br /></p>
+<ul>
+  <li>Use POX and Click to implement basic functions
+Project in Python implementing a network topology with public, demilitarized, and private zones. SDN part with controller,
+firewalls; NFV part with IDS, load balancer, and NAPT. <a href="">More »</a></li>
+</ul>
+
+  <h4 id="building-networked-system-security">Building Networked System Security</h4>
+  <p>[Jan. 2023 - Mar. 2023] Course Project<br /></p>
+<ul>
+  <li>Networked system security implementation and testing on a demo enterprise setup.
+It is a team-of-3 project implementing security methods (certificates, encryptions, VPNs, etc.) to a functional server (web
+services and file transfers). I use OpenSSL programming to generate root and intermediate CA, maintain and manage
+database, and issue certificates with authentication and revocation test. <a href="">More »</a></li>
+</ul>
+
+  <h4 id="electronics-process-summer-internship">Electronics Process Summer Internship</h4>
+  <p>[Jun. 2021 - Jul. 2021] Integrated Training<br /></p>
+<ul>
+  <li>Audio player with multiple functions. 
+It is by MSP430 series mini-controller programming in C, using infrared &amp; ultrasound sensors for simple gesture detections of
+pause / play / next, with an 8*8 LED array to display figures matching the rhythm of music, assembling with laser-cutting
+outer package made in CAD. <a href="">More »</a></li>
+</ul>
+
+  <h4 id="quad-rotor-drone-simulation">Quad-rotor Drone Simulation</h4>
+    <p>[Oct. 2021 - Mar. 2022] Club Project <br /></p>
+<ul>
+  <li>Basic simulation of drone with sensors, inspired by Brian Douglas.
+Raspberry PI micro-controller-based programming in Micro Python, using PID control in velocity loop for rotor control, using
+Simulink to calibrate the transfer function, using wireless communication port to connect &amp; expanding the control system
+into the algorithm of auto cruising, obstacles avoiding &amp; route planning, and ensuring stability. <a href="">More »</a></li>
+</ul>
+
+  <h4 id="wechat-mini-program-for-maker-space">WeChat Mini-program for Maker-space</h4>
+  <p>[Nov. 2020 - May 2021] Club Project<br /></p>
+<ul>
+  <li>Online mobile-adapted WeChat Mini-program online in App store.
+This project is for club information's release &amp; promotion. Main functions are real-time news &amp; message synchronization with
+HITsz official website, club's media articles updating, and club member info-integration. Elegant UI front-end design based
+on HTML / CSS, reference to open resource, friendly interaction &amp; smooth vision. <a href="">More »</a>
+</ul>
+
+</details>
+
+<h3 id="skills">Skills</h3>
+<details class="notation" open>
+<summary></summary>
+
+  <ul>
+    <li>For programming languages, I am proficient in <b>C/C++, Python, Matlab</b> as well as basic formatting languages such as <b>HTML, Markdown, LaTeX</b>, with an opening mind to learn new technologies. Nowadays as AI copilots emerging in IDE, the gap between traditional programming and AI-assisted development is narrowing. Integrating AI into software development will revolutionize the way we build applications. I believe as the methodology is tranferable, a good programmer is capable to get hands on new technologies quickly. </li>
+    
+    <li>Of course, skillful usage of modern development environments is essential. A good programmer should be familiar with various development tools and workflows, such as operation systems and IDE. I am proficient in using <b>gerneral command lines, docker, Git, VScode</b>, and I am always eager to explore new tools that can enhance my productivity and creativity.</li>
+
+    <li>Regarding embedding engineering and project design, I have experience with microcontrollers and hardware platforms. I am proficient in using <b>Raspberry Pi, TI MSP430</b> for embedded programming and prototyping. Additionally, I have experience with electronic design tools such as <b>Multisim and AutoCAD</b> for circuit simulation and PCB design. Also, I am in progress of learning 3D printing and modeling. I catagorize these skills as fundamental to a creative, interesting maker.</li>
+
+    <li>I enjoy exploring new technologies and staying updated with the latest trends in the world of development, where I find joy in solving problems and creating innovative solutions. As for daily hobbies, I like swimming, photography, and writing. I believe that a well-rounded individual should have diverse interests and skills and could be able to find fulfillment in various pursuits.</li>
+
+    <li>Having lived in different countries, I have developed a global perspective and cultural awareness. This experience has enhanced my ability to work in diverse teams and adapt to various environments. Being multilingual is a fun thing for me. As a Chinese speaker (native in Mandarin and Cantonese), I am also a mastery user of English. I can speak basic level of Japanese, Swedish, and French. It helps me understand things from different cultures and enhances my communication skills.</li>
+  </ul>
+
+
+</details>
+
 </div>
 
 <!-- Informal method ensuring JPN/CHN translation of my name -->
@@ -254,8 +423,7 @@ home: true
             <details class="question" markdown="1">
             <summary>&emsp;More questions?&emsp;</summary>
     I am so flattered that you have more interest on me. 😁<br>
-    If you have industrial project for me to tryout, please feel free to reach me. 😊<br>
-    Please read my <a href="/about">About</a> page or keep my <a href="/assets/file/CV_Ziyang_Song_2025_Summer.pdf">CV</a>! 😎<br>
+    I am open for jobs. If you have industrial project or internship opportunities for me to tryout, please feel free to reach me and keep my <a href="/assets/file/CV_Ziyang_Song_2026.pdf">CV</a>! 😎<br>
     Don't hesitate to contact me if you have any questions and let's keep in touch! 🤝
             </details>
         </div>
