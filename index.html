@@ -28,46 +28,84 @@ home: true
 </script>
 
 <!-- Set Original background -->
-<canvas id="backgroundCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;"></canvas>
+<canvas id="backgroundCanvas" aria-hidden="true" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;"></canvas>
+<style>
+    #backgroundCanvas {
+        background-color: #e0e9ef;
+        background-image: linear-gradient(135deg, #e0e9ef 0%, #ffffff 100%);
+    }
+
+    html[data-theme="dark"] #backgroundCanvas {
+        background-color: #1e293b;
+        background-image: linear-gradient(135deg, #1e293b 0%, #111111 100%);
+    }
+</style>
 <script>
-    const canvas = document.getElementById('backgroundCanvas');
-    const ctx = canvas.getContext('2d');
+    (function () {
+        const canvas = document.getElementById('backgroundCanvas');
+        const ctx = canvas?.getContext('2d');
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    function drawBackground() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const isDarkMode = document.documentElement.dataset.theme === 'dark';
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        if (isDarkMode) {
-            gradient.addColorStop(0, '#1e293b'); // Dark blue-gray
-            gradient.addColorStop(1, '#111111'); // Dark
-        } else {
-            gradient.addColorStop(0, '#e0e9ef'); // Light blue-gray
-            gradient.addColorStop(1, '#ffffff'); // White
+        if (!canvas || !ctx) {
+            return;
         }
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
 
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        drawBackground();
-    });
+        let frameId = null;
 
-    var observer = new MutationObserver(() => {
-        drawBackground();
-    });
+        function isDarkMode() {
+            return document.documentElement.dataset.theme === 'dark';
+        }
 
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
-    window.addEventListener('load', () => {
-        resizeCanvas();
-        drawBackground();
-    });
+        function drawBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+
+            if (isDarkMode()) {
+                gradient.addColorStop(0, '#1e293b');
+                gradient.addColorStop(1, '#111111');
+            } else {
+                gradient.addColorStop(0, '#e0e9ef');
+                gradient.addColorStop(1, '#ffffff');
+            }
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function scheduleBackgroundRender() {
+            if (frameId) {
+                window.cancelAnimationFrame(frameId);
+            }
+
+            frameId = window.requestAnimationFrame(() => {
+                resizeCanvas();
+                drawBackground();
+                frameId = null;
+            });
+        }
+
+        window.addEventListener('resize', scheduleBackgroundRender, { passive: true });
+
+        const observer = new MutationObserver((mutations) => {
+            if (mutations.some((mutation) => mutation.attributeName === 'data-theme')) {
+                scheduleBackgroundRender();
+            }
+        });
+
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', scheduleBackgroundRender, { once: true });
+        } else {
+            scheduleBackgroundRender();
+        }
+
+        window.addEventListener('load', scheduleBackgroundRender, { once: true });
+    })();
 </script>
 
 <!-- Matrix Rain module import -->
@@ -168,7 +206,7 @@ home: true
         <p style="font-size:3em; font-weight: 700; line-height: 1.2;">Welcome to<br>Chiron's space!</p>
         <!-- Typewriter effect, "/assets/js/script.js" -->
         <div id="text_intro_target" style="width: fit-content; font-size:1.25em; font-weight: 500; display: flex; flex-direction: row;align-content: flex-start;justify-content: flex-start;">I'm a </div>
-        <p style="margin-top: 0; font-size:1.25em; font-weight: 500;">Living in Germany 🇩🇪.</p>
+        <p style="margin-top: 0; font-size:1.25em; font-weight: 500;">Back to China🇨🇳 now.</p>
     </div>
 </div>
 
@@ -193,9 +231,9 @@ home: true
 
 <blockquote>
 <div class="text-center px-4 prose prose-{{site.theme-color}} font-normal">
-<p>I'm starting my PhD at Ruhr University Bochum! <span style="white-space: no-wrap;"></span><br>
-    Current Project: <i>IGEL-AI (“IntelliGEnte Lösungen für Echtzeit-Sicherheit”)</i> for security of future mobile networks<br>
-    Specialization: <i>System Security</i></p>
+<p>Lost and find, on an Odessey of myself.<span style="white-space: no-wrap;"></span><br>
+    Current Project: <i>AI vibe coding</i> for interesting inventions<br>
+</p>
 
 <p>I have a solid foundation in networked systems, and communication engineering with both hardware and software experiences. I am interested in privacy preservation, applied cryptography, intelligent algorithms and networked security topics.</p>
 
@@ -216,7 +254,7 @@ home: true
   <div style="display: flex; flex-direction: column; margin-left: 1em;">
     <h4 id="rub-ruhr-university-bochum">Ruhr University Bochum</h4>
     <p>[Jan. 2026 - Mar. 2026] Bochum, Germany<br />
-    Dotoral Candidate Intern at System Security Group: working on 5G mobile network simulation on OMNeT++, with focusing control plane security aspects<br /></p>
+    Dotoral Candidate Intern period at System Security Group: working on 5G mobile network simulation on OMNeT++, with focusing control plane security aspects<br /></p>
   </div>
 
 </div>
