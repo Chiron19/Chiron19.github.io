@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Hanken Grotesk Variable', ...defaultTheme.fontFamily.sans],
+        sans: ['Be Vietnam Pro', 'Noto Serif HK', ...defaultTheme.fontFamily.sans],
       },
     },
   },
@@ -40,12 +40,10 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@fontsource-variable/hanken-grotesk'),
     require('@squidfunk/mkdocs-material'),
     require('@camwiegert/typical'),
     require('@lottielab/lottie-player'),
     require('daisyui'),
-    // require('@fontsource/inclusive-sans'),
   ],
 
 }
